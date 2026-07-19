@@ -60,3 +60,13 @@
 .lib-tabs button.on{background:var(--laiton);color:var(--charbon);border-color:var(--laiton);font-weight:600}
 .libPanel{display:none;padding:0 var(--space-4) var(--space-6);max-width:760px;margin:0 auto}
 .libPanel.visible{display:block}
+
+/* Settings panel styles */
+.settingsRow{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--space-3);
+  padding:var(--space-3) 0;border-bottom:1px solid var(--border);
+}
+.settingsRow > div:first-child{flex:1}
+.settingsRow .lbl{font-weight:600;color:var(--text);margin-bottom:4px}
+.settingsRow .desc{font-size:0.85em;color:var(--text-secondary)}
+.actions-row{display:flex;gap:var(--space-2);align-items:center;padding:var(--space-3) 0}
