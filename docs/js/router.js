@@ -30,7 +30,10 @@ export function initRouter(){
   });
 
   document.getElementById("libBtn")?.addEventListener("click", () => showMode("bibliotheque"));
-  document.getElementById("settingsBtn")?.addEventListener("click", () => showMode("parametres"));
+  document.getElementById("settingsBtn")?.addEventListener("click", () => {
+    showMode("bibliotheque");
+    document.dispatchEvent(new CustomEvent("s3k:selectLibTab", { detail: { tab: "parametres" } }));
+  });
 
   window.addEventListener("popstate", () => {
     const m = (location.hash || "").replace("#", "");
