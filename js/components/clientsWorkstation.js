@@ -25,8 +25,23 @@ let FILTER_STATE = {
 };
 
 export async function loadWorkstationClients() {
-  CLIENTS = getJSON("s3k_clients", []);
-  CLIENTS = CLIENTS.map(c => ({
+  // Try to load from localStorage first
+  let storedClients = getJSON("s3k_clients", null);
+
+  // If empty, load from clients-import.json
+  if (!storedClients || storedClients.length === 0) {
+    try {
+      const response = await fetch("js/data/clients-import.json");
+      storedClients = await response.json();
+      // Save to localStorage for future loads
+      setJSON("s3k_clients", storedClients);
+    } catch (err) {
+      console.warn("Could not load clients-import.json:", err);
+      storedClients = [];
+    }
+  }
+
+  CLIENTS = storedClients.map(c => ({
     ...c,
     status: c.status || "nouveau",
     lastCallDate: c.lastCallDate || null,
