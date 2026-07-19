@@ -614,7 +614,7 @@ export function initWorkstation() {
   window.recordCall = recordCall;
   window.scheduleFollowUp = scheduleFollowUp;
   window.exportClients = exportClients;
-  if (typeof exportEnrichedNeeded === 'function') window.exportEnrichedNeeded = exportEnrichedNeeded;
+  window.exportEnrichedNeeded = exportEnrichedNeeded;
   window.showSessionSelector = showSessionSelector;
   window.closeSessionSelector = closeSessionSelector;
   window.startProspectSession = startProspectSession;
