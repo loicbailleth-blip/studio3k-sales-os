@@ -250,6 +250,11 @@ ul.clean li::before{content:"·";color:var(--laiton);position:absolute;left:4px;
 .ws-score.hot{color:#c97d3c}
 .ws-score.warm{color:var(--laiton)}
 .ws-score.cold{color:var(--text-secondary)}
+.ws-phone-badge{padding:3px 6px;border-radius:3px;font-size:0.9em;min-width:22px;text-align:center}
+.ws-phone-badge.phone-mobile{background:#1e3a5f;color:#5ba3d0}
+.ws-phone-badge.phone-fixe{background:#3a2a1e;color:#d4ab6a}
+.ws-phone-badge.phone-à enrichir{background:var(--bg3);color:var(--text-secondary)}
+.ws-tentatives{padding:3px 6px;border-radius:3px;font-size:0.75em;font-weight:600;background:var(--bg);border:1px solid var(--border);color:var(--gris)}
 .ws-empty{padding:32px 16px;text-align:center;color:var(--text-secondary)}
 .ws-empty-line{padding:12px;text-align:center;color:var(--text-secondary);font-size:0.9em}
 .ws-panel-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border)}

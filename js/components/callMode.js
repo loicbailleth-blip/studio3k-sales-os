@@ -12,7 +12,7 @@ import { kpi } from "./dashboard.js";
 import { resetFiche } from "./fiche.js";
 import { showMode } from "../router.js";
 
-let cmIdx = 1, cmTimer = null, cmSec = 0, cmRefus = 0, cmBranch = "bao", cmMood = "", cmAcc = "", cmObs = "";
+let cmIdx = 1, cmTimer = null, cmSec = 0, cmRefus = 0, cmBranch = "bao", cmMood = "", cmAcc = "", cmObs = "", cmProspectId = null;
 const CM_TOTAL = 9;
 
 /* Chaque étape technique appartient à une phase en langage simple : c'est l'unique
@@ -300,6 +300,21 @@ function finishCall(o){
   document.getElementById("cmEnd").hidden = true;
   document.getElementById("cmLive").hidden = true;
 
+  // Emit event for workstation call tracking
+  if (cmProspectId) {
+    const outcomeMap = {
+      "rdv": "conversation",
+      "conv": "conversation",
+      "dec": "conversation",
+      "rep": "voicemail",
+      "nodec": "voicemail"
+    };
+    const workstationOutcome = outcomeMap[o] || "voicemail";
+    document.dispatchEvent(new CustomEvent("3kos:call-finished", {
+      detail: { prospectId: cmProspectId, outcome: workstationOutcome }
+    }));
+  }
+
   if(o === "rdv" || o === "conv"){
     resetFiche();
     const n = document.getElementById("cmProspect").value;
@@ -317,6 +332,9 @@ document.addEventListener("s3k:endCall", () => showMode("mission"));
 
 /* Launch call with prospect pre-filled */
 export function launchCallWithProspect(prospect) {
+  // Store prospect ID for event emission
+  cmProspectId = prospect.id || prospect.email;
+
   // Fill prospect name
   const prospectInput = document.getElementById("cmProspect");
   if (prospectInput && prospect.nom) {

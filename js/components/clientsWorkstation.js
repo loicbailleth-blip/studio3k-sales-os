@@ -17,12 +17,22 @@ const STATUS_LABELS = {
 let CLIENTS = [];
 let FILTERED = [];
 let CURRENT_PROSPECT = null;
+let CURRENT_SESSION = null;
 let FILTER_STATE = {
   status: [],
   search: "",
   persona: [],
-  minScore: 0
+  minScore: 0,
+  phone_type: [] // "mobile", "fixe", "à enrichir"
 };
+
+/* Détecte automatiquement le type de numéro */
+function detectPhoneType(telephone) {
+  if (!telephone || !telephone.trim()) return "à enrichir";
+  const cleaned = telephone.replace(/\s/g, "");
+  if (/^(\+33|0)(6|7)/.test(cleaned)) return "mobile";
+  return "fixe";
+}
 
 export async function loadWorkstationClients() {
   // Try to load from localStorage first
@@ -45,7 +55,12 @@ export async function loadWorkstationClients() {
     ...c,
     status: c.status || "nouveau",
     lastCallDate: c.lastCallDate || null,
-    nextFollowUp: c.nextFollowUp || null
+    nextFollowUp: c.nextFollowUp || null,
+    phone_type: detectPhoneType(c.telephone),
+    tentatives: c.tentatives || 0,
+    date_relance: c.date_relance || null,
+    lead_entrant_date: c.lead_entrant_date || null,
+    created_at: c.created_at || new Date().toISOString()
   }));
   applyFilters();
   return CLIENTS;
@@ -55,6 +70,7 @@ export function applyFilters() {
   FILTERED = CLIENTS.filter(c => {
     if (FILTER_STATE.status.length > 0 && !FILTER_STATE.status.includes(c.status)) return false;
     if (FILTER_STATE.persona.length > 0 && !FILTER_STATE.persona.includes(c.persona)) return false;
+    if (FILTER_STATE.phone_type.length > 0 && !FILTER_STATE.phone_type.includes(c.phone_type)) return false;
     if (c.score < FILTER_STATE.minScore) return false;
     if (FILTER_STATE.search) {
       const q = FILTER_STATE.search.toLowerCase();
@@ -84,18 +100,61 @@ export function openProspect(clientId) {
   renderProspectPanel();
 }
 
-export function getNextProspect() {
-  if (!FILTERED.length) return null;
+export function getNextProspectPile() {
+  // Pile intelligente avec ordre strict
+  // 1. Relance + date <= aujourd'hui
+  // 2. Lead entrant (< 48h)
+  // 3. Mobiles (score DESC)
+  // 4. Fixes (score DESC)
+  // Exclusions: sans numéro, statut Refus/Hors cible/Client, tentatives >= 5
 
-  // Priorité: À appeler > Relance > Nouveau > Appelé
-  const priorityOrder = ["a_appeler", "relance", "nouveau", "appele"];
-  for (const status of priorityOrder) {
-    const candidates = FILTERED.filter(c => c.status === status);
-    if (candidates.length > 0) {
-      return candidates[0];
-    }
-  }
-  return FILTERED[0];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const candidates = (CURRENT_SESSION ? FILTERED.filter(c => {
+    // Session filtering: persona + phone_type
+    if (CURRENT_SESSION.persona && c.persona !== CURRENT_SESSION.persona) return false;
+    if (CURRENT_SESSION.phone_type && c.phone_type !== CURRENT_SESSION.phone_type) return false;
+    return true;
+  }) : FILTERED).filter(c => {
+    // Exclusions
+    if (c.phone_type === "à enrichir") return false;
+    if (["refus", "hors_cible", "client"].includes(c.status)) return false;
+    if ((c.tentatives || 0) >= 5) return false;
+    return true;
+  });
+
+  // Étape 1: Relance + date <= aujourd'hui
+  const relances = candidates.filter(c => {
+    if (c.status !== "relance") return false;
+    if (!c.date_relance) return false;
+    const relanceDate = new Date(c.date_relance);
+    relanceDate.setHours(0, 0, 0, 0);
+    return relanceDate <= today;
+  });
+  if (relances.length > 0) return relances[0];
+
+  // Étape 2: Lead entrant (< 48h)
+  const fortyEightHoursAgo = new Date(Date.now() - 48 * 60 * 60 * 1000);
+  const hotLeads = candidates.filter(c => {
+    if (!c.lead_entrant_date) return false;
+    return new Date(c.lead_entrant_date) >= fortyEightHoursAgo;
+  });
+  if (hotLeads.length > 0) return hotLeads[0];
+
+  // Étape 3: Mobiles (score DESC)
+  const mobiles = candidates.filter(c => c.phone_type === "mobile").sort((a, b) => (b.score || 0) - (a.score || 0));
+  if (mobiles.length > 0) return mobiles[0];
+
+  // Étape 4: Fixes (score DESC)
+  const fixes = candidates.filter(c => c.phone_type === "fixe").sort((a, b) => (b.score || 0) - (a.score || 0));
+  if (fixes.length > 0) return fixes[0];
+
+  return null;
+}
+
+export function getNextProspect() {
+  return getNextProspectPile();
 }
 
 export function openNextProspect() {
@@ -204,6 +263,8 @@ function renderClientsList() {
       </div>
       <div class="ws-client-meta">
         <span class="ws-status-badge status-${c.status}">${STATUS_LABELS[c.status] || c.status}</span>
+        <span class="ws-phone-badge phone-${c.phone_type}">${c.phone_type === "mobile" ? "📱" : c.phone_type === "fixe" ? "☎" : "❓"}</span>
+        ${c.tentatives > 0 ? `<span class="ws-tentatives">${c.tentatives}x</span>` : ''}
         <span class="ws-score ${c.score >= 60 ? 'hot' : c.score >= 40 ? 'warm' : 'cold'}">${c.score}</span>
       </div>
     </div>
@@ -303,6 +364,125 @@ export function closeWorkstationPanel() {
   renderProspectPanel();
 }
 
+/* Session: choose persona + phone_type, filters pile for that lot */
+export function startSession(persona, phone_type) {
+  CURRENT_SESSION = { persona, phone_type };
+  applyFilters();
+  renderClientsList();
+}
+
+export function endSession() {
+  CURRENT_SESSION = null;
+  applyFilters();
+  renderClientsList();
+}
+
+/* Get prospects without phone for enrichment */
+export function getEnrichedNeeded() {
+  return CLIENTS.filter(c => c.phone_type === "à enrichir").sort((a, b) => (b.score || 0) - (a.score || 0));
+}
+
+/* Export à enrichir to CSV */
+export function exportEnrichNeeded() {
+  const needed = getEnrichedNeeded();
+  if (needed.length === 0) {
+    alert("Aucun prospect à enrichir");
+    return;
+  }
+
+  const header = "Nom;Entreprise;LinkedIn;Localisation";
+  const lines = needed.map(c => [c.nom, c.entreprise, c.site || "", c.ville].map(v => (v || "").replace(/;/g, ",")).join(";"));
+  const csv = [header, ...lines].join("\n");
+  const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "A_enrichir_" + new Date().toISOString().slice(0, 10) + ".csv";
+  a.click();
+}
+
+/* Import JSON from Notion format */
+export function importNotionJSON(jsonText) {
+  try {
+    const data = JSON.parse(jsonText);
+    const contacts = Array.isArray(data) ? data : data.contacts || [];
+
+    if (contacts.length === 0) {
+      alert("Aucun contact trouvé dans le JSON");
+      return;
+    }
+
+    // Dédoublonnage par nom
+    const existingNames = new Set(CLIENTS.map(c => c.nom.toLowerCase()));
+    const newContacts = contacts.filter(c => !existingNames.has(c.nom.toLowerCase()));
+
+    const imported = newContacts.map((c, idx) => ({
+      id: c.email || c.telephone?.replace(/\s/g, "") || ("imported_" + Date.now() + "_" + idx),
+      nom: c.nom,
+      entreprise: c.fonction || c.segment || "",
+      email: c.email || "",
+      telephone: c.telephone || "",
+      site: c.linkedin || "",
+      ville: c.localisation || "",
+      persona: c.persona_app === "Non défini" ? "Professionnel" : c.persona_app,
+      score: 80,
+      notes: (c.hook ? "HOOK: " + c.hook + "\n" : "") + (c.priorite ? "Priorité: " + c.priorite : ""),
+      phone_type: detectPhoneType(c.telephone),
+      tentatives: 0,
+      date_relance: null,
+      lead_entrant_date: new Date().toISOString(),
+      status: c.telephone ? "a_appeler" : "nouveau",
+      created_at: new Date().toISOString()
+    }));
+
+    CLIENTS = [...imported, ...CLIENTS];
+    setJSON("s3k_clients", CLIENTS);
+    applyFilters();
+    renderClientsList();
+
+    alert("✓ " + imported.length + " contacts importés");
+  } catch (err) {
+    alert("Erreur JSON: " + err.message);
+  }
+}
+
+/* Listen to call-finished event from Copilote */
+export function initCallFinishedListener() {
+  document.addEventListener("3kos:call-finished", (e) => {
+    const { prospectId, outcome } = e.detail;
+    if (!prospectId) return;
+
+    const client = CLIENTS.find(c => c.id === prospectId || c.email === prospectId);
+    if (!client) return;
+
+    // Incrément tentatives
+    client.tentatives = (client.tentatives || 0) + 1;
+
+    // Proposition date relance
+    const today = new Date();
+    const relanceDate = new Date(today);
+
+    if (outcome === "conversation") {
+      relanceDate.setDate(relanceDate.getDate() + 1);
+    } else if (outcome === "voicemail") {
+      relanceDate.setDate(relanceDate.getDate() + 7);
+    } else if (outcome === "voicemail_2") {
+      relanceDate.setDate(relanceDate.getDate() + 30);
+    } else {
+      // Pas de relance pour autres outcomes
+      relanceDate.setDate(relanceDate.getDate() + 1);
+    }
+
+    client.date_relance = relanceDate.toISOString().split("T")[0];
+    if (client.tentatives >= 2) {
+      client.status = "relance";
+    }
+
+    setJSON("s3k_clients", CLIENTS);
+    applyFilters();
+    renderClientsList();
+  });
+}
+
 export function initWorkstation() {
   window.openProspect = openProspect;
   window.openNextProspect = openNextProspect;
@@ -311,6 +491,7 @@ export function initWorkstation() {
   window.recordCall = recordCall;
   window.scheduleFollowUp = scheduleFollowUp;
   window.exportClients = exportClients;
+  window.exportEnrichedNeeded = exportEnrichedNeeded;
   window.CURRENT_PROSPECT_OBJ = null;
   window.addProspectNote = (id) => {
     const note = document.getElementById("wsNoteInput").value.trim();
@@ -319,6 +500,8 @@ export function initWorkstation() {
     document.getElementById("wsNoteInput").value = "";
     renderProspectPanel();
   };
+
+  initCallFinishedListener();
 
   // Defer event listeners until next tick
   setTimeout(() => {
