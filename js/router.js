@@ -25,7 +25,12 @@ export function goObj(cat){
 }
 
 export function initRouter(){
-  document.querySelectorAll("#tabBar button[data-mode]").forEach(b => {
+  console.log("initRouter called");
+  const buttons = document.querySelectorAll("#tabBar button[data-mode]");
+  console.log("Found", buttons.length, "tabBar buttons");
+
+  buttons.forEach(b => {
+    console.log("Attaching listener to", b.dataset.mode);
     b.addEventListener("click", () => showMode(b.dataset.mode));
   });
 
