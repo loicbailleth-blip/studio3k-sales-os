@@ -1,0 +1,74 @@
+[
+  {
+    "titre": "1 · Faire émerger le problème",
+    "gold": true,
+    "items": [
+      { "q": "« Sur l'image d'expert que vous renvoyez aujourd'hui, vous vous mettriez combien sur 10 ? »", "objectif": "auto-diagnostic", "emotion": "lucidité inconfortable", "moment": "ouverture" },
+      { "q": "« Aujourd'hui, la majorité de vos clients viennent d'où ? »", "objectif": "révéler la dépendance à un seul canal", "emotion": "prise de recul", "moment": "pivot, milieu d'appel" },
+      { "q": "« Vos trois derniers clients, ils vous ont trouvé comment, exactement ? »", "objectif": "passer du général au factuel", "emotion": "concret", "moment": "après une réponse vague" },
+      { "q": "« Quand quelqu'un vous cherche sur Google avant de vous appeler, il trouve quoi ? »", "objectif": "lui faire vivre le parcours client", "emotion": "doute", "moment": "creusage" },
+      { "q": "« Pourquoi un prospect vous choisirait vous, plutôt qu'un confrère qu'il voit partout ? »", "objectif": "exposer l'absence de différenciation perçue", "emotion": "injustice", "moment": "creusage" }
+    ]
+  },
+  {
+    "titre": "2 · Faire verbaliser (il parle, vous encaissez)",
+    "gold": true,
+    "items": [
+      { "q": "« Qu'est-ce qui manque pour que ce soit un 9 ? »", "objectif": "il liste lui-même ses manques", "emotion": "introspection", "moment": "juste après son chiffre" },
+      { "q": "« C'est-à-dire ? » · « Comment ça ? » · « Et à part ça ? » · « Depuis combien de temps ? »", "objectif": "prolonger sa parole sans rien affirmer", "emotion": "sentiment d'être écouté", "moment": "partout, en boucle" },
+      { "q": "« Racontez-moi la dernière fois où vous avez perdu une affaire face à un concurrent moins bon. »", "objectif": "ancrer le problème dans un souvenir réel", "emotion": "frustration revécue", "moment": "quand il minimise" },
+      { "q": "« Et ça, ça vous fait quoi ? »", "objectif": "passer du fait à l'émotion", "emotion": "celle qu'il nomme lui-même", "moment": "après un constat factuel" }
+    ]
+  },
+  {
+    "titre": "3 · Créer la prise de conscience",
+    "gold": true,
+    "items": [
+      { "q": "« Vous avez forcément un confrère devenu LA référence sans être meilleur que vous. Pourquoi lui, à votre avis ? »", "objectif": "il formule lui-même la mécanique de la référence", "emotion": "rivalité", "moment": "cœur d'appel" },
+      { "q": "« Entre votre réputation réelle et ce qu'on voit de vous en ligne, il y a combien d'écart, honnêtement ? »", "objectif": "mesurer le décalage lui-même", "emotion": "dissonance", "moment": "profils installés" },
+      { "q": "« Vos clients disent que vous êtes excellent. Où est-ce qu'un inconnu peut le vérifier ? »", "objectif": "distinguer être bon et être perçu bon", "emotion": "évidence qui dérange", "moment": "après ses avis Google" },
+      { "q": "« À votre avis, on choisit le meilleur expert, ou l'expert qu'on connaît ? »", "objectif": "lui faire énoncer la loi du marché", "emotion": "lucidité", "moment": "transition vers le décalage" }
+    ]
+  },
+  {
+    "titre": "4 · Révéler le coût caché",
+    "gold": true,
+    "items": [
+      { "q": "« Ça vous coûte quoi, concrètement, de ne pas être la référence ? »", "objectif": "chiffrer l'inaction", "emotion": "perte", "moment": "après la prise de conscience" },
+      { "q": "« Combien de clients, à votre avis, repartent avant même de vous appeler ? »", "objectif": "rendre visible l'invisible", "emotion": "aversion à la perte", "moment": "après le parcours Google" },
+      { "q": "« Quand un client négocie vos prix, c'est quoi la vraie raison, à votre avis ? »", "objectif": "relier prix et statut", "emotion": "vexation utile", "moment": "dirigeants, experts-comptables" },
+      { "q": "« Ce que vous faites déjà, ça vous apporte combien de nouveaux clients ? »", "objectif": "l'arme anti « on fait déjà »", "emotion": "constat d'inefficacité", "moment": "objection concurrent" },
+      { "q": "« Ça vous prend combien de temps par semaine, aller chercher les clients ? »", "objectif": "chiffrer le coût en temps", "emotion": "fatigue reconnue", "moment": "objection temps" }
+    ]
+  },
+  {
+    "titre": "5 · Provoquer la projection",
+    "gold": true,
+    "items": [
+      { "q": "« Imaginez que dans votre zone, quand on pense [son métier], on pense à vous. Ça change quoi, concrètement ? »", "objectif": "faire visualiser l'état futur", "emotion": "désir", "moment": "juste avant de proposer l'échange" },
+      { "q": "« Si le bouche-à-oreille s'arrêtait 3 mois, il se passerait quoi ? »", "objectif": "projeter la fragilité", "emotion": "inquiétude contrôlée", "moment": "chemin bouche-à-oreille" },
+      { "q": "« Qu'est-ce qui vous ferait dire dans 6 mois : là, ça valait le coup ? »", "objectif": "il définit lui-même le succès", "emotion": "appropriation", "moment": "avant le closing, ou objection prix" },
+      { "q": "« Les profils que vous recrutez, ils vous connaissaient avant de postuler ? »", "objectif": "élargir l'enjeu au recrutement", "emotion": "fierté de dirigeant", "moment": "PME en croissance" }
+    ]
+  },
+  {
+    "titre": "6 · Créer l'urgence et qualifier la décision",
+    "gold": true,
+    "items": [
+      { "q": "« Si vous ne changez rien dans les 12 prochains mois, ça donne quoi ? »", "objectif": "coût de l'inaction dans le temps", "emotion": "vertige léger", "moment": "fin de conversation" },
+      { "q": "« Pendant ce temps, votre confrère continue de publier. Vous pensez que l'écart se réduit ou qu'il se creuse ? »", "objectif": "urgence par comparaison", "emotion": "compétition", "moment": "profils ambitieux" },
+      { "q": "« C'est un sujet pour cette année, ou un sujet pour un jour ? »", "objectif": "forcer un positionnement temporel", "emotion": "engagement", "moment": "qualification, score Urgence" },
+      { "q": "« Sur ce genre de décision, vous tranchez seul ? »", "objectif": "identifier le décideur sans le vexer", "emotion": "statut", "moment": "avant le closing, score Décideur" }
+    ]
+  },
+  {
+    "titre": "7 · Les questions anti-objections (le réflexe Moteur 3)",
+    "gold": false,
+    "items": [
+      { "q": "« Vous en êtes satisfait ? »", "objectif": "ouvrir la brèche sans contredire", "emotion": "réévaluation", "moment": "toute objection « on fait déjà »" },
+      { "q": "« Si vous pouviez améliorer une seule chose, ce serait laquelle ? »", "objectif": "il nomme la faille lui-même", "emotion": "honnêteté", "moment": "3e question de cascade" },
+      { "q": "« Pas intéressé parce que vous êtes déjà LA référence, ou parce que vous détestez ce genre d'appel ? »", "objectif": "choix binaire qui rouvre le dialogue", "emotion": "amusement", "moment": "« pas intéressé »" },
+      { "q": "« Qu'est-ce qui sera différent dans 6 mois ? »", "objectif": "dégonfler le report", "emotion": "lucidité", "moment": "« rappelez-moi plus tard »" }
+    ]
+  }
+]

@@ -1,0 +1,72 @@
+{
+  "pme": {
+    "nom": "Dirigeant PME",
+    "obs": "Loïc accompagne pas mal de dirigeants de PME, et il fait toujours le même constat.",
+    "diag": "Les boîtes les mieux dirigées sont rarement celles qu'on connaît. On connaît celle du patron qui est devenu le visage de son secteur, celui en qui on a confiance avant même de le rencontrer.",
+    "preempt": "Aujourd'hui, vos clients arrivent surtout par le bouche-à-oreille, c'est ça ?",
+    "cons": "Le bouche-à-oreille a un plafond : vous vendez au mérite, et le mérite, ça se négocie. Celui qui est devenu la référence, lui, il vend au prix qu'il veut, et il attire les talents en plus.",
+    "consQ": "C'est un sujet pour vous, ça, d'être choisi à votre vraie valeur ?",
+    "resultat": "devenir la référence de son secteur, vendre au prix juste, attirer les talents",
+    "audit": "Analyse de positionnement expert"
+  },
+  "ec": {
+    "nom": "Expert-comptable",
+    "obs": "Loïc travaille avec plusieurs experts-comptables, et le constat est toujours le même.",
+    "diag": "Techniquement, vous vous valez presque tous. Donc le client ne choisit pas le meilleur : il choisit celui qu'il connaît, ou le moins cher.",
+    "preempt": "Aujourd'hui, vos nouveaux clients arrivent surtout par recommandation, c'est ça ?",
+    "cons": "Tant que vous êtes interchangeable, vous vendez de la saisie au prix du marché. Celui qui est perçu comme LE référent, lui, il vend du conseil, et bien plus cher.",
+    "consQ": "Ça vous parle, cette guerre des prix sur les lettres de mission ?",
+    "resultat": "être choisi pour la valeur, facturer du conseil, sortir de la guerre des prix",
+    "audit": "Diagnostic de référence"
+  },
+  "coach": {
+    "nom": "Coach / Thérapeute",
+    "obs": "Loïc accompagne des coachs et des praticiens, et il voit toujours la même chose.",
+    "diag": "Le marché est saturé, et le client est incapable de juger votre niveau réel. Alors il choisit celui qui lui inspire le plus confiance, pas le plus compétent.",
+    "preempt": "Aujourd'hui, votre agenda se remplit comment : on vient à vous, ou c'est vous qui allez chercher ?",
+    "cons": "Tant que rien n'installe votre crédibilité en amont, vous allez chercher chaque client un par un. Celui qui a une image d'expert installée, on vient à lui, et il choisit ses clients.",
+    "consQ": "Vous en êtes où, vous, là-dessus : on vient à vous, ou c'est vous qui courez ?",
+    "resultat": "une image d'expert qui pré-vend, agenda plein, choisir ses clients",
+    "audit": "Analyse d'autorité"
+  },
+  "avocat": {
+    "nom": "Avocat",
+    "obs": "Loïc travaille avec des avocats, souvent très spécialisés, et le constat revient à chaque fois.",
+    "diag": "Sur votre domaine, vous êtes sûrement excellent. Mais quand un client cherche, il ne tombe pas sur vous : il tombe sur le confrère qui est devenu la référence.",
+    "preempt": "Vos dossiers, ils viennent surtout de votre réseau et des confrères aujourd'hui ?",
+    "cons": "Résultat, vous prenez les dossiers qui passent, pas forcément ceux que vous voulez. Celui qui est perçu comme LA référence de sa niche, lui, il choisit ses affaires et les facture plus haut.",
+    "consQ": "C'est quelque chose que vous aimeriez choisir davantage, vos dossiers ?",
+    "resultat": "être LA référence de sa niche, attirer de meilleurs dossiers (ton sobre, déontologie : crédibilité et expertise, jamais « pub »)",
+    "audit": "Cartographie de crédibilité"
+  },
+  "local": {
+    "nom": "Indépendant local",
+    "obs": "Loïc accompagne des indépendants qui rayonnent surtout en local, et il fait toujours le même constat.",
+    "diag": "Dans votre zone, vous êtes sûrement parmi les meilleurs. Mais celui qu'on recommande, c'est celui qu'on a déjà vu quelque part, pas forcément le plus fort.",
+    "preempt": "Vos clients, ils vous trouvent comment aujourd'hui, surtout le bouche-à-oreille du coin ?",
+    "cons": "Tant que vous dépendez du bouche-à-oreille, vous avez un plafond. Et le jour où ça ralentit, il n'y a pas de plan B. La référence locale, elle, remplit sans démarcher.",
+    "consQ": "Ça vous est déjà arrivé, un trou d'air comme ça ?",
+    "resultat": "devenir LA référence locale, remplir sans démarcher",
+    "audit": "Analyse d'influence locale"
+  },
+  "finance": {
+    "nom": "Professionnel Finance (Gestion de Patrimoine & DAF)",
+    "obs": "Loïc travaille avec des conseillers patrimoniaux et DAF, et le constat est toujours le même.",
+    "diag": "Votre expertise est solide, mais vous êtes indistinct face à la concurrence. Vos clients potentiels vous trouvent par hasard, pas par intention.",
+    "preempt": "Aujourd'hui, comment vos prospects de 35-60 ans vous découvrent-ils : réseaux, référence, ou encore pas du tout ?",
+    "cons": "Tant que vous n'humanisez pas votre expertise, vous restez une commodité. Celui qui vulgarise sa spécialité en Reels/TikTok attire 10x plus de leads pré-qualifiés, sans force de vente.",
+    "consQ": "Ça vous parle, cette idée de transformer votre expertise invisible en contenu court qui pull les clients à vous ?",
+    "resultat": "attirer des leads qualifiés autonomes via contenu court, humaniser son positionnement, vendre du conseil haut de gamme",
+    "audit": "Audit de présence digitale & stratégie de contenu"
+  },
+  "immobilier": {
+    "nom": "Professionnel Immobilier (Mentorat & Investissement)",
+    "obs": "Loïc accompagne des mentors immobilier et conseillers en investissement, et il repère le même problème à chaque fois.",
+    "diag": "Votre expertise fait de vous une autorité, mais vous restez invisible pour les investisseurs potentiels. Ils trouvent d'abord celui qui a la meilleure présence digitale, pas forcément le meilleur conseil.",
+    "preempt": "Où trouvez-vous la majorité de vos clients potentiels aujourd'hui : Instagram, bouche-à-oreille immobilier, ou encore vous les cherchez ?",
+    "cons": "Sans une stratégie vidéo claire, vos milliers de vues ne se convertissent pas en dossiers. Celui qui structure son expertise en série (pièges, zones, fiscalité, deals fermés), lui, il double sa conversion.",
+    "consQ": "C'est un problème pour vous : avoir des vues mais pas assez de leads qualifiés qui contactent ?",
+    "resultat": "doubler l'acquisition de leads, transformer vues en demandes de consultation, établir la crédibilité de conseil",
+    "audit": "Audit de conversion vidéo & stratégie leads"
+  }
+}

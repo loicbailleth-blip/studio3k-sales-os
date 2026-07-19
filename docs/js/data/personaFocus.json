@@ -1,0 +1,33 @@
+{
+  "_comment": "Curation légère : références vers du contenu déjà existant (hooks.json, objections.json, questions.json). Aucun nouveau texte commercial — juste quoi mettre en avant selon le persona choisi.",
+  "pme": {
+    "familles": [1, 3, 2],
+    "objections": ["temps", "concurrent"],
+    "questions": [1, 4, 6],
+    "closing": 1
+  },
+  "ec": {
+    "familles": [2, 3],
+    "objections": ["prix", "concurrent"],
+    "questions": [3, 4],
+    "closing": 9
+  },
+  "coach": {
+    "familles": [1, 6],
+    "objections": ["confiance", "concurrent"],
+    "questions": [1, 5],
+    "closing": 5
+  },
+  "avocat": {
+    "familles": [4, 3],
+    "objections": ["barrage", "confiance"],
+    "questions": [3, 6],
+    "closing": 6
+  },
+  "local": {
+    "familles": [5, 1],
+    "objections": ["temps", "mail"],
+    "questions": [1, 5],
+    "closing": 8
+  }
+}
