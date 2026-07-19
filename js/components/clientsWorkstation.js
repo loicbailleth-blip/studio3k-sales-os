@@ -41,7 +41,7 @@ export async function loadWorkstationClients() {
   // If empty, load from clients-import.json
   if (!storedClients || storedClients.length === 0) {
     try {
-      const response = await fetch("js/data/clients-import.json");
+      const response = await fetch("js/data/clients-import.json?v=" + Date.now());
       storedClients = await response.json();
       // Save to localStorage for future loads
       setJSON("s3k_clients", storedClients);
