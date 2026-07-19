@@ -1,7 +1,6 @@
 /* Poste de travail du commercial — optimisé pour plusieurs centaines d'appels/semaine */
 import { getJSON, setJSON } from "../services/storage.js";
 import { getHistory, addCall, addStatus, addNote, scheduleFollowUp as scheduleFollowUpService, getLastCall, getNextFollowUp } from "../services/prospectHistory.js";
-import { fetchClientsFromNotion, upsertClient } from "../services/notionSync.js";
 
 const STATUSES = ["nouveau", "a_appeler", "appele", "relance", "rdv", "client", "refus", "hors_cible"];
 const STATUS_LABELS = {
@@ -159,49 +158,6 @@ export function addProspectNote(clientId, note, category = "general") {
   addNote(clientId || client.email, note, category);
 }
 
-export async function syncClientsFromNotion() {
-  const flash = document.getElementById("clientsFlash");
-  if (flash) flash.textContent = "↻ Synchronisation...";
-
-  try {
-    const remoteClients = await fetchClientsFromNotion();
-    if (!remoteClients || remoteClients.length === 0) {
-      if (flash) flash.textContent = "✓ Aucun client Notion à synchroniser";
-      return;
-    }
-
-    CLIENTS = remoteClients.map(rc => {
-      const existing = CLIENTS.find(lc => lc.email === rc.email || lc.telephone === rc.telephone);
-      return { ...existing, ...rc };
-    });
-
-    setJSON("s3k_clients", CLIENTS);
-    applyFilters();
-    renderClientsList();
-
-    if (flash) flash.textContent = "✓ Synchronisé depuis Notion";
-    setTimeout(() => { if (flash) flash.textContent = ""; }, 2500);
-  } catch (err) {
-    console.error("[Workstation] Notion sync failed:", err);
-    if (flash) flash.textContent = "✗ Erreur sync Notion";
-  }
-}
-
-export async function saveAndSyncClient(clientId, clientData) {
-  // Save to local storage
-  setJSON("s3k_clients", CLIENTS);
-
-  // Upsert to Notion if configured
-  const token = localStorage.getItem("notion_token");
-  if (token) {
-    try {
-      await upsertClient(clientData);
-    } catch (err) {
-      console.warn("[Workstation] Notion upsert failed (local saved):", err);
-    }
-  }
-}
-
 export function exportClients() {
   if (!CLIENTS || CLIENTS.length === 0) {
     const flash = document.getElementById("clientsFlash");
@@ -354,7 +310,6 @@ export function initWorkstation() {
   window.updateProspectStatus = updateProspectStatus;
   window.recordCall = recordCall;
   window.scheduleFollowUp = scheduleFollowUp;
-  window.syncClientsFromNotion = syncClientsFromNotion;
   window.exportClients = exportClients;
   window.CURRENT_PROSPECT_OBJ = null;
   window.addProspectNote = (id) => {
@@ -399,13 +354,6 @@ export function initWorkstation() {
         }
       });
     });
-
-    // Sync Notion button
-    document.getElementById("syncClientsBtn")?.addEventListener("click", syncClientsFromNotion);
-
-    // Export CSV button
-    document.querySelector("button[onclick='exportClients()']")?.removeAttribute("onclick");
-    document.querySelector("button:has-text('Export CSV')")?.addEventListener("click", exportClients);
   }, 0);
 
   renderClientsList();

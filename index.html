@@ -478,23 +478,6 @@
       <input type="number" id="dailyObjectiveInput" min="1" style="width:90px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;text-align:center">
     </div>
 
-    <h3 style="margin-top:32px; color:var(--laiton-clair)">Intégration Notion</h3>
-    <p class="note">Synchronisez vos clients avec une base Notion pour une sauvegarde centralisée.</p>
-
-    <div class="settingsRow">
-      <div><div class="lbl">Token Notion</div><div class="desc">Créez une intégration sur https://www.notion.so/my-integrations</div></div>
-      <input type="password" id="notionToken" placeholder="secret_..." style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;max-width:300px">
-    </div>
-    <div class="settingsRow">
-      <div><div class="lbl">ID Base de données Notion</div><div class="desc">L'UUID de votre database (voir URL de la base)</div></div>
-      <input type="text" id="notionDbId" placeholder="xxxx-xxxx-xxxx-xxxx" style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;max-width:300px">
-    </div>
-    <div class="actions-row">
-      <button class="btn ghost" id="saveNotionConfig" style="flex:0">Enregistrer config</button>
-      <button class="btn ghost" id="clearNotionConfig" style="flex:0">Effacer config</button>
-      <span class="note" id="notionConfigMsg"></span>
-    </div>
-
     <div class="settingsRow">
       <div><div class="lbl">Réinitialiser les données</div><div class="desc">Efface les fiches, les KPI du jour et les préférences.</div></div>
       <button class="btn ghost" id="resetAllData">Effacer</button>
@@ -538,7 +521,6 @@
     <div style="padding:16px 12px; gap:8px; display:flex; flex-direction:column;">
       <button class="btn btn-primary" onclick="openNextProspect()">▶ Prospect suivant</button>
       <button class="btn" onclick="showClientForm()">+ Ajouter client</button>
-      <button class="btn ghost" id="syncClientsBtn">↻ Sync Notion</button>
       <button class="btn ghost" onclick="exportClients()">↓ Export CSV</button>
     </div>
 

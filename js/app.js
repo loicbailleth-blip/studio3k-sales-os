@@ -3,6 +3,7 @@
 import { initTheme } from "./services/theme.js";
 import { initRouter } from "./router.js";
 import { clearIndex } from "./services/searchEngine.js";
+import { checkAuth } from "./components/auth.js";
 
 import { initPersonas } from "./components/personas.js";
 import { initHooks } from "./components/hooks.js";
@@ -21,6 +22,9 @@ import { initClients, loadClients } from "./components/clients.js";
 import { loadWorkstationClients, initWorkstation } from "./components/clientsWorkstation.js";
 
 async function boot(){
+  // Check auth before loading app
+  if (!checkAuth()) return;
+
   initTheme();
 
   clearIndex();
