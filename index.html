@@ -27,7 +27,7 @@
 <!-- ============================================================
      MODE 1 — MISSION
      ============================================================ -->
-<section id="mode-mission" class="mode-screen visible"><!-- v4 -->
+<section id="mode-mission" class="mode-screen visible"><!-- v5 -->
   <header class="mission-head">
     <div class="mission-brand">3KOS</div>
     <div class="mission-head-actions">
@@ -637,11 +637,20 @@
 </div>
 
 <script>
-// Force reload app.js with cache bust
+// Clear all caches and force reload
+if ('caches' in window) {
+  caches.keys().then(names => {
+    names.forEach(name => caches.delete(name));
+  });
+}
+// Force reload every JS file with current timestamp
+const ts = Date.now();
 const script = document.createElement('script');
 script.type = 'module';
-script.src = 'js/app.js?v=' + Date.now();
+script.src = 'js/app.js?v=' + ts;
 document.body.appendChild(script);
+// Also clear localStorage cache indicators
+localStorage.removeItem('3kos_cache_version');
 </script>
 </body>
 </html>
