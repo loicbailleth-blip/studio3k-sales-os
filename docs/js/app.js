@@ -22,34 +22,38 @@ import { initClients, loadClients } from "./components/clients.js";
 import { loadWorkstationClients, initWorkstation } from "./components/clientsWorkstation.js";
 
 async function boot(){
-  // Check auth before loading app
-  if (!checkAuth()) return;
+  try {
+    // Check auth before loading app
+    if (!checkAuth()) return;
 
-  initTheme();
+    initTheme();
 
-  clearIndex();
-  await Promise.all([
-    initPersonas(),
-    initHooks(),
-    initObjections(),
-    initDiagnostics(),
-    initQualification(),
-    initQuestions(),
-    loadClients(),
-    loadWorkstationClients()
-  ]);
-  initFiche();
-  initDashboard();
-  initCallMode();
-  initSearch();
-  initSettings();
-  initMission();
-  initClients();
-  initWorkstation();
-  await initLibrary();
-  initRouter();
+    clearIndex();
+    await Promise.all([
+      initPersonas(),
+      initHooks(),
+      initObjections(),
+      initDiagnostics(),
+      initQualification(),
+      initQuestions(),
+      loadClients(),
+      loadWorkstationClients()
+    ]);
+    initFiche();
+    initDashboard();
+    initCallMode();
+    initSearch();
+    initSettings();
+    initMission();
+    initClients();
+    initWorkstation();
+    await initLibrary();
+    initRouter();
 
-  document.getElementById("app").classList.add("ready");
+    document.getElementById("app").classList.add("ready");
+  } catch(e) {
+    console.error('Boot error:', e);
+  }
 }
 
 boot();
