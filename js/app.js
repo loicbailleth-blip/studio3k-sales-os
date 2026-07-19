@@ -24,11 +24,18 @@ import { loadWorkstationClients, initWorkstation } from "./components/clientsWor
 async function boot(){
   try {
     // Check auth before loading app
-    if (!checkAuth()) return;
+    if (!checkAuth()) {
+      console.log("Auth check failed");
+      return;
+    }
 
+    console.log("Auth passed, starting boot");
     initTheme();
+    console.log("Theme initialized");
 
     clearIndex();
+    console.log("Index cleared");
+
     await Promise.all([
       initPersonas(),
       initHooks(),
@@ -39,6 +46,8 @@ async function boot(){
       loadClients(),
       loadWorkstationClients()
     ]);
+    console.log("Data initialized");
+
     initFiche();
     initDashboard();
     initCallMode();
@@ -47,14 +56,29 @@ async function boot(){
     initMission();
     initClients();
     initWorkstation();
+    console.log("Components initialized");
+
     await initLibrary();
+    console.log("Library initialized");
+
     initRouter();
+    console.log("Router initialized");
 
     document.getElementById("app").classList.add("ready");
+    console.log("App ready");
   } catch(e) {
     console.error('Boot error:', e);
+    document.getElementById("app").classList.add("ready");
   }
 }
+
+// Timeout fallback - force app ready after 5s if boot hasn't finished
+setTimeout(() => {
+  if (!document.getElementById("app").classList.contains("ready")) {
+    console.warn("Boot timeout - forcing app ready");
+    document.getElementById("app").classList.add("ready");
+  }
+}, 5000);
 
 boot();
 
