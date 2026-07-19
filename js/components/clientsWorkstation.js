@@ -81,6 +81,7 @@ export function openProspect(clientId) {
   const client = CLIENTS.find(c => c.id === clientId || c.email === clientId);
   if (!client) return;
   CURRENT_PROSPECT = client;
+  window.CURRENT_PROSPECT_OBJ = client;
   renderProspectPanel();
 }
 
@@ -270,7 +271,10 @@ function renderProspectPanel() {
   el.innerHTML = `
     <div class="ws-panel-header">
       <h2>${c.nom || "Prospect sans nom"}</h2>
-      <button class="btn ghost" onclick="closeWorkstationPanel()">✕</button>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <button class="btn btn-primary" onclick="launchCallWithProspect(window.CURRENT_PROSPECT_OBJ)" style="font-size:14px;padding:6px 12px;">🔴 Appel</button>
+        <button class="btn ghost" onclick="closeWorkstationPanel()">✕</button>
+      </div>
     </div>
 
     <div class="ws-panel-body">
@@ -352,6 +356,7 @@ export function initWorkstation() {
   window.scheduleFollowUp = scheduleFollowUp;
   window.syncClientsFromNotion = syncClientsFromNotion;
   window.exportClients = exportClients;
+  window.CURRENT_PROSPECT_OBJ = null;
   window.addProspectNote = (id) => {
     const note = document.getElementById("wsNoteInput").value.trim();
     if (!note) return;

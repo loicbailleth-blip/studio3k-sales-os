@@ -315,7 +315,33 @@ function finishCall(o){
 
 document.addEventListener("s3k:endCall", () => showMode("mission"));
 
+/* Launch call with prospect pre-filled */
+export function launchCallWithProspect(prospect) {
+  // Fill prospect name
+  const prospectInput = document.getElementById("cmProspect");
+  if (prospectInput && prospect.nom) {
+    prospectInput.value = prospect.nom;
+  }
+
+  // Pre-select persona if available
+  if (prospect.persona) {
+    const personas = getPersonas();
+    const personaKey = Object.keys(personas).find(
+      k => personas[k]?.nom === prospect.persona
+    );
+    if (personaKey) {
+      document.querySelectorAll(".startPersonaBtn").forEach(btn => {
+        btn.classList.toggle("selected", btn.dataset.persona === personaKey);
+      });
+    }
+  }
+
+  // Switch to call mode
+  showMode("copilote");
+}
+
 export function initCallMode(){
+  window.launchCallWithProspect = launchCallWithProspect;
   window.startCall = startCall;
   window.cmShowEnd = cmShowEnd;
   window.cmHideEnd = cmHideEnd;
