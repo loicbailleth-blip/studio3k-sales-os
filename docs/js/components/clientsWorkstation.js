@@ -38,18 +38,9 @@ export async function loadWorkstationClients() {
   // Try to load from localStorage first
   let storedClients = getJSON("s3k_clients", null);
 
-  // If empty, load from clients-import.json
-  if (!storedClients || storedClients.length === 0) {
-    try {
-      const response = await fetch("js/data/clients-import.json?v=" + Date.now());
-      storedClients = await response.json();
-      // Save to localStorage for future loads
-      setJSON("s3k_clients", storedClients);
-    } catch (err) {
-      console.warn("Could not load clients-import.json:", err);
-      storedClients = [];
-    }
-  }
+  // SECURITY: No embedded data. App starts empty. Users import via JSON only.
+  // Auto-load from clients-import.json DISABLED for security.
+  storedClients = storedClients || [];
 
   CLIENTS = storedClients.map(c => ({
     ...c,
