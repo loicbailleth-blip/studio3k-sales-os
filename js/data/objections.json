@@ -1,0 +1,69 @@
+{
+  "temps": {
+    "titre": "« Pas le temps » · toujours une question d'abord",
+    "items": [
+      ["La cascade (défaut)", "Q1 : « Bien sûr. Juste pour savoir si je rappelle : c'est pas le temps aujourd'hui, ou pas le temps pour ce sujet en général ? » ⏸<br>Si « aujourd'hui » : « Je rappelle plutôt jeudi matin ou vendredi en fin de journée ? »<br>Si « le sujet » : « D'accord. Et le fait que des confrères moins bons que vous soient devenus les références, ça, c'est un sujet ? » ⏸"],
+      ["Le symptôme (après la cascade seulement)", "« C'est souvent le signe qu'on court après les clients au lieu qu'ils viennent. Ça vous prend combien de temps par semaine, aller chercher les clients ? » ⏸ (il chiffre : la douleur est posée)"],
+      ["L'anticipation (à placer AVANT qu'il le dise)", "« J'ai 30 secondes, vous aussi. Une seule question et je vous laisse. » (puis la question d'ouverture, sans pause)"],
+      ["Le placeholder", "« Très bien. Je glisse un créneau de 15 minutes avec Loïc jeudi dans votre agenda. Si l'horaire ne va pas, vous le déplacez. »"]
+    ]
+  },
+  "prix": {
+    "titre": "« C'est combien ? » / budget · toujours une question d'abord",
+    "items": [
+      ["La cascade (défaut)", "Q1 : « Bonne question. Avant d'y répondre : qu'est-ce qui vous ferait dire dans 6 mois que ça valait chaque euro ? » ⏸<br>Q2 : « Et aujourd'hui, un bon client de plus par mois, ça représente quoi pour vous ? » ⏸<br>Puis : « C'est exactement ce que Loïc chiffre pendant l'échange. L'échange, lui, ne vous coûte rien : il vous dit si le jeu en vaut la chandelle, ou pas. »"],
+      ["« Je n'ai pas de budget »", "Q1 : « Je comprends. C'est pas de budget cette année, ou pas de budget pour ce qui ne prouve pas son retour ? » ⏸<br>Puis : « Alors l'échange est fait pour vous : Loïc vous dit ce que ça rapporterait AVANT que vous dépensiez un euro. Et s'il n'y a pas de potentiel, il vous le dit aussi. »"],
+      ["« C'est sûrement trop cher » (signal de tri)", "Q1 : « Trop cher par rapport à votre trésorerie, ou par rapport à ce que ça rapporterait ? » ⏸ (Trésorerie : sortie polie, score Maturité bas. Retour : la conversation continue.)"]
+    ]
+  },
+  "confiance": {
+    "titre": "« Vous êtes qui ? » / « Pas intéressé » · toujours une question d'abord",
+    "items": [
+      ["« Vous êtes qui ? » / « C'est quoi ? »", "« Le bras droit de Loïc. C'est lui l'expert : il accompagne des [persona]s à devenir les références de leur secteur. Moi, je vérifie juste si votre profil vaut 15 minutes de son temps. Et justement : [reprenez votre question d'ouverture]. »"],
+      ["« Pas intéressé » : la cascade", "Q1 : « Aucun souci. Juste par curiosité : pas intéressé parce que vous êtes déjà LA référence de votre zone, ou parce que vous détestez ce genre d'appel ? » ⏸<br>Si « déjà la référence » : « Chapeau. Simple vérification : si je tape votre métier et votre ville, je tombe sur vous ? » ⏸<br>Si « je déteste ces appels » : « Moi aussi. Dernière question et je raccroche : si demain un client choisit un confrère moins bon que vous juste parce qu'il l'a vu passer, ça vous embête, ou pas du tout ? » ⏸"],
+      ["« Où avez-vous eu mon numéro ? »", "« Loïc repère les profils à potentiel de la région, le vôtre est ressorti. Je vous sors de la liste juste après si vous voulez. Mais tant que je vous ai : [votre question]. »"],
+      ["« C'est du marketing, ça ne marche pas »", "Q1 : « Vous avez déjà testé ? » ⏸ Q2 : « Et ça vous a rapporté combien de clients ? » ⏸ Puis : « C'est exactement pour ça que Loïc n'appelle pas ça du marketing. Une référence, ça ne se loue pas : ça s'installe. C'est la nuance qu'il vous montrera en 15 minutes. »"],
+      ["« Rappelez-moi dans 6 mois »", "Q1 : « Volontiers. Qu'est-ce qui sera différent dans 6 mois ? » ⏸ (Rien de précis : « Alors autant que Loïc regarde maintenant. S'il n'y a pas de potentiel, il vous le dit, et je ne vous rappelle jamais. »)"],
+      ["Agressivité / insulte", "« Une dernière question avant que je raccroche : vous êtes comme ça seulement avec moi, ou avec tous ceux qui appellent ? » (sourire, on raccroche poliment. Point de données, on passe.)"]
+    ]
+  },
+  "concurrent": {
+    "titre": "« On fait déjà » / « J'ai déjà quelqu'un » · la cascade reine",
+    "items": [
+      ["« On fait déjà des vidéos » : LA cascade", "Q1 : « Intéressant. Vous en êtes satisfait ? » ⏸<br>Q2 : « Ça vous apporte combien de nouveaux clients, concrètement ? » ⏸<br>Q3 : « Si vous pouviez améliorer une seule chose, ce serait laquelle ? » ⏸<br>Il détruit l'objection lui-même. Puis : « C'est exactement ce que Loïc analyse : pourquoi ça produit de l'image, mais pas une référence. »"],
+      ["« On a déjà une agence »", "Q1 : « Très bien. Elle a fait de vous LA référence de votre secteur, ou elle vous fait de belles publications ? » ⏸<br>Q2 (baguette magique) : « Si vous pouviez améliorer UNE chose chez eux, ce serait quoi ? » ⏸<br>Puis : « Loïc ne remplace personne. Il regarde ce qui manque au niveau du dessus : le positionnement. Vos prestataires actuels exécuteront mieux avec sa carte. »"],
+      ["« On gère en interne »", "Q1 : « Parfait. Et la personne qui gère, elle a déjà transformé quelqu'un en référence de son secteur, ou elle publie ? » ⏸<br>Puis : « L'échange donnera à votre équipe la carte exacte. Vous gardez la main, Loïc vous dit juste où creuser. »"],
+      ["« J'ai déjà fait un podcast / une interview »", "Q1 : « Très bien. Qu'est-ce que ça a changé, concrètement, dans les semaines qui ont suivi ? » ⏸ (En général : rien.) « C'est le point exact que Loïc analyse : la différence entre passer une fois, et devenir la référence. »"]
+    ]
+  },
+  "mail": {
+    "titre": "« Envoyez-moi un mail » · toujours une question d'abord",
+    "items": [
+      ["La cascade (défaut)", "Q1 : « Bien sûr. Pour que le mail serve à quelque chose : aujourd'hui, votre frein numéro un, c'est qu'on ne vous trouve pas, qu'on ne vous croit pas sur parole, ou que des confrères plus en vue passent devant ? » ⏸ (il répond : la conversation est relancée, le mail est oublié)"],
+      ["Le cadrage", "« Je peux, mais un mail ne dira rien de votre cas. Ce que Loïc analyse, c'est comment VOUS êtes perçu face à VOS concurrents. Ça se fait de vive voix, en 15 minutes. Vous seriez plutôt début ou fin de semaine ? »"],
+      ["Le placeholder", "« Je vous envoie le mail, et je glisse un créneau de 15 minutes avec Loïc jeudi. Si l'horaire ne va pas, vous le déplacez. »"],
+      ["Attention", "Ne JAMAIS dire simplement « d'accord, je vous l'envoie ». C'est une politesse pour raccrocher : le mail meurt dans la pile."]
+    ]
+  },
+  "barrage": {
+    "titre": "Barrage secrétaire · « de la part de Loïc » est votre meilleur atout",
+    "items": [
+      ["Règle n°1", "Jamais de pitch au barrage. Dès qu'il entend un vendeur, il bloque. Ton de cadre, infos au compte-gouttes. « De la part de Loïc » sonne comme un rendez-vous d'égal à égal, pas comme une prospection."],
+      ["Le passe-partout", "« Bonjour, c'est [Prénom], de la part de Loïc, pour [Prénom du décideur]. Merci. » (bref, assuré, comme un habitué)"],
+      ["« C'est à quel sujet ? »", "« Son positionnement face à ses confrères. Il comprendra. Merci beaucoup. » (terme précis, ton neutre, aucune explication de plus)"],
+      ["Si insistance", "« Loïc lui a adressé une note ces derniers jours. Vous pouvez simplement lui faire passer que j'ai appelé ? »"],
+      ["Mode sympathie", "« Bonjour [prénom de l'assistante si connu], j'espère que vous pourrez m'aider : je cherche à joindre [Prénom], je suis au bon numéro ? »"],
+      ["« Il est en réunion »", "« Pas de souci. Il est plutôt joignable en début ou en fin de journée, d'habitude ? » (on note, on rappelle au créneau donné : engagement pris)"]
+    ]
+  },
+  "divers": {
+    "titre": "Divers · révéler la stratégie, jamais la mécanique",
+    "items": [
+      ["« C'est quoi exactement, ces interviews ? »", "Q1 : « Vous voyez ces formats d'interviews haut de gamme où on découvre un dirigeant en profondeur, et où on se dit : celui-là, il maîtrise ? » ⏸<br>« C'est ce que Loïc construit. Mais la vraie question, c'est ce que ça installerait pour VOUS. C'est exactement ce qu'il analyse en 15 minutes. »"],
+      ["« C'est de la vidéo / du podcast, quoi »", "Q1 : « Si c'était juste ça, tout le monde serait une référence. Pourquoi, à votre avis, certains le deviennent et pas les autres ? » ⏸ Puis : « C'est précisément la différence que Loïc regarde. »"],
+      ["« Je dois en parler à mon associé »", "Q1 : « Très bien. Qu'est-ce qui pourrait bloquer, à votre avis ? » ⏸ Puis : « L'échange se fait très bien à deux. Mardi ou jeudi ? »"],
+      ["« Mauvaise expérience avec une agence »", "Q1 : « Vous avez raison d'être prudent. Elle vous vendait des livrables, ou un résultat ? » ⏸ Puis : « C'est pour ça que ça commence par une analyse où Loïc vous dit si ça vaut le coup, ou pas. Vous repartez avec son avis, dans tous les cas. »"],
+      ["Il dit OUI trop vite à tout", "Méfiance : profil curieux ou fuite polie. Avancez le filtre : « Loïc est exigeant sur les profils : vous êtes à quelle distance de Roubaix, et l'activité tourne depuis combien de temps ? »"]
+    ]
+  }
+}

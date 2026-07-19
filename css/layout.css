@@ -1,0 +1,62 @@
+/* ===================== COQUILLE : 3 MODES PLEIN ÉCRAN ===================== */
+#app{min-height:100vh;min-height:100dvh;padding-bottom:calc(64px + var(--safe-bottom))}
+
+.mode-screen{display:none;min-height:100vh;min-height:100dvh}
+.mode-screen.visible{display:block}
+
+/* ===================== BARRE DE NAVIGATION (Mission / Bibliothèque) ===================== */
+#tabBar{
+  position:fixed;left:0;right:0;bottom:0;z-index:80;display:flex;
+  background:var(--bg2);border-top:1px solid var(--border);
+  padding:var(--space-2) var(--space-4) calc(var(--space-2) + var(--safe-bottom));
+}
+#tabBar.hidden{display:none}
+#tabBar button{
+  flex:1;background:transparent;border:none;color:var(--gris);font-size:var(--text-sm);
+  padding:var(--space-2) 0;border-radius:var(--radius-sm);min-height:48px;
+}
+#tabBar button.on{color:var(--laiton)}
+
+/* ===================== MODE 1 : MISSION ===================== */
+.mission-head{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:calc(var(--space-4) + var(--safe-top)) var(--space-5) var(--space-3);
+}
+.mission-brand{font-family:Georgia,serif;color:var(--laiton);font-size:var(--text-lg);letter-spacing:.5px}
+.mission-head-actions{display:flex;gap:var(--space-2)}
+.mission-head-actions button{
+  background:var(--bg2);border:1px solid var(--border);color:var(--gris);
+  width:40px;height:40px;border-radius:var(--radius-sm);font-size:16px;
+}
+.mission-body{
+  max-width:520px;margin:0 auto;padding:var(--space-6) var(--space-5) var(--space-8);
+  display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--space-5);
+  min-height:calc(100vh - 90px);min-height:calc(100dvh - 90px);justify-content:center;
+}
+.mission-greeting{color:var(--gris);font-size:var(--text-md);max-width:340px}
+.mission-stats{display:flex;gap:var(--space-4);width:100%}
+.mstat{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-md);padding:var(--space-5) var(--space-3);box-shadow:var(--shadow-sm)}
+.mstat-n{font-family:Georgia,serif;font-size:var(--text-2xl);color:var(--text)}
+.mstat-l{color:var(--gris);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.06em;margin-top:var(--space-1)}
+.mstat-l span{display:block;opacity:.7}
+.mstat.mstat-accent .mstat-n{color:var(--laiton)}
+.mission-progress{width:100%}
+.mission-prog-track{width:100%;height:8px;background:var(--bg3);border-radius:8px;overflow:hidden}
+#missionProgBar{height:100%;background:var(--laiton);width:0;transition:width var(--dur) var(--ease)}
+.mission-progress .note{display:block;margin-top:var(--space-2)}
+#startCallBtn{width:100%}
+
+/* ===================== MODE 3 : BIBLIOTHÈQUE ===================== */
+.lib-head{padding:calc(var(--space-3) + var(--safe-top)) var(--space-4) 0}
+.lib-tabs{
+  display:flex;gap:var(--space-2);overflow-x:auto;padding:var(--space-3) var(--space-4);
+  position:sticky;top:0;background:var(--bg);z-index:5;-webkit-overflow-scrolling:touch;
+}
+.lib-tabs::-webkit-scrollbar{display:none}
+.lib-tabs button{
+  flex:0 0 auto;background:var(--bg3);border:1px solid var(--border);color:var(--gris);
+  border-radius:var(--radius-sm);padding:var(--space-2) var(--space-4);font-size:var(--text-sm);white-space:nowrap;
+}
+.lib-tabs button.on{background:var(--laiton);color:var(--charbon);border-color:var(--laiton);font-weight:600}
+.libPanel{display:none;padding:0 var(--space-4) var(--space-6);max-width:760px;margin:0 auto}
+.libPanel.visible{display:block}

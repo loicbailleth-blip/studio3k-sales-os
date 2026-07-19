@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>3KOS SalesOS</title>
+<meta name="description" content="Copilote de prospection téléphonique : le Copilote d'appel décide, le commercial exécute.">
+<meta name="theme-color" content="#161513">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="3KOS">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icons/icon-192.png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/mobile.css">
+</head>
+<body>
+
+<div id="offlinePill">Hors ligne</div>
+
+<div id="app">
+
+<!-- ============================================================
+     MODE 1 — MISSION
+     ============================================================ -->
+<section id="mode-mission" class="mode-screen visible">
+  <header class="mission-head">
+    <div class="mission-brand">3KOS</div>
+    <div class="mission-head-actions">
+      <button id="libBtn" aria-label="Bibliothèque" title="Bibliothèque">📚</button>
+      <button id="settingsBtn" aria-label="Paramètres" title="Paramètres">⚙</button>
+    </div>
+  </header>
+  <div class="mission-body">
+    <p class="mission-greeting" id="missionGreeting"></p>
+    <div class="mission-stats" id="missionStats"></div>
+    <div class="mission-progress">
+      <div class="mission-prog-track"><div id="missionProgBar"></div></div>
+      <span class="note" id="missionProgTxt"></span>
+    </div>
+    <button id="startCallBtn" class="btn btn-primary btn-xl">COMMENCER LE PROCHAIN APPEL</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODE 2 — COPILOTE D'APPEL
+     ============================================================ -->
+<section id="mode-copilote" class="mode-screen">
+
+  <!-- --- Avant d'appeler --- -->
+  <div id="cmPreCall" class="cm-precall">
+    <h2>Avant d'appeler</h2>
+    <p class="sub">Choisis le profil, coche ce que tu remarques si tu en as le temps (facultatif), puis lance l'appel.</p>
+    <div id="personaBar" class="precall-personas" data-persona-bar>
+      <button data-p="pme" class="on">Dirigeant PME</button>
+      <button data-p="ec">Expert-comptable</button>
+      <button data-p="coach">Coach / Thérapeute</button>
+      <button data-p="avocat">Avocat</button>
+      <button data-p="local">Indépendant local</button>
+    </div>
+    <div id="cmProspectInfo"></div>
+    <div class="card gold diag">
+      <h3 style="margin-top:0">Ce que tu remarques (facultatif)</h3>
+      <div id="diagChecklist"><div class="skeleton" style="width:80%"></div><div class="skeleton" style="width:65%"></div></div>
+      <div id="recoBox">Rien coché ? Pas grave : l'appel part sur l'accroche par défaut.</div>
+    </div>
+    <button id="cmBeginBtn" class="btn btn-primary btn-xl">C'EST PARTI</button>
+  </div>
+
+  <!-- --- En direct --- -->
+  <div id="cmLive" class="cm-live" hidden>
+    <div class="cm-head">
+      <div class="cm-head-left">
+        <span class="cm-chrono" id="cmChrono">00:00</span>
+        <input id="cmProspect" placeholder="Nom du prospect">
+      </div>
+      <button class="btn ghost btn-sm" onclick="cmShowEnd()">Terminer</button>
+    </div>
+    <div class="cm-prog"><div id="cmProgBar"></div></div>
+    <div class="cm-mood" id="cmMoodBar">
+      <span class="note">Il est :</span>
+      <button data-m="curieux">🟢</button><button data-m="mefiant">🟡</button><button data-m="ferme">🔴</button>
+      <span class="note" id="cmMoodTip"></span>
+    </div>
+    <div class="cm-flash" id="cmFlash"></div>
+
+    <div class="cm-main" id="cmMain">
+      <div class="cm-goal" id="cmGoalLabel"></div>
+      <div class="cm-verbatim" id="cmVerbatim"></div>
+      <button class="cm-tip-toggle" id="cmTipToggle" hidden></button>
+      <div class="cm-tip" id="cmTipBox" hidden></div>
+      <div class="cm-actions-label" id="cmActionsLabel"></div>
+      <div class="cm-actions" id="cmActions"></div>
+    </div>
+
+    <div class="cm-objbar">
+      <span>Il dévie :</span>
+      <button onclick="cmObj('temps')">Pas le temps</button>
+      <button onclick="cmObj('confiance')">Qui est Loïc ? / Pas intéressé</button>
+      <button onclick="cmObj('concurrent')">On a déjà quelqu'un</button>
+      <button onclick="cmObj('mail')">Envoyez un mail</button>
+      <button onclick="cmObj('prix')">Combien ça coûte ?</button>
+      <button onclick="cmObj('barrage')">Barrage</button>
+      <button onclick="cmObj('divers')">Autre</button>
+      <button onclick="cmRepondeur()">Répondeur</button>
+    </div>
+  </div>
+
+  <!-- --- Fin d'appel : issue --- -->
+  <div id="cmEnd" class="cm-end" hidden>
+    <h3 style="margin-top:0">Comment s'est terminé l'appel ?</h3>
+    <button onclick="finishCall('rdv')"><b>RDV PRIS</b> · un pas de plus vers l'objectif du jour</button>
+    <button onclick="finishCall('conv')"><b>Conversation sans RDV</b> · la fiche te dira comment relancer</button>
+    <button onclick="finishCall('dec')"><b>Décroché, pas de conversation</b> · raccroché avant le diagnostic</button>
+    <button onclick="finishCall('rep')"><b>Répondeur</b> · vocal laissé, mail à envoyer</button>
+    <button onclick="finishCall('nodec')"><b>Pas décroché</b> · on enchaîne</button>
+    <button class="cm-end-back" onclick="cmHideEnd()">← Revenir à l'appel</button>
+  </div>
+
+  <!-- --- Après l'appel : fiche + score --- -->
+  <div id="cmPostCall" class="cm-postcall" hidden>
+    <p class="postcall-flash" id="postCallFlash"></p>
+    <div class="card">
+      <div class="fiche">
+        <div><label>Nom</label><input id="f-nom"></div>
+        <div><label>Entreprise</label><input id="f-ent"></div>
+        <div><label>Persona</label><select id="f-persona"><option>Dirigeant PME</option><option>Expert-comptable</option><option>Coach / Thérapeute</option><option>Avocat</option><option>Indépendant local</option></select></div>
+        <div><label>CA estimé</label><input id="f-ca" placeholder="ex : 500k à 1M"></div>
+        <div><label>Taille équipe</label><input id="f-equipe"></div>
+        <div><label>Distance de Roubaix</label><select id="f-geo"><option>Moins de 1h</option><option>1h à 2h</option><option selected>Inconnue</option><option>Plus de 2h (SORTIE)</option></select></div>
+        <div><label>Marketing actuel</label><input id="f-mkt" placeholder="bouche-à-oreille, pub, agence..."></div>
+        <div><label>Objectif exprimé</label><input id="f-obj" placeholder="ce qu'il a dit vouloir, ses mots"></div>
+        <div class="full"><label>Notes / verbatim clés</label><textarea id="f-notes" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="card gold">
+      <h3 style="margin-top:0">Score</h3>
+      <div class="fiche">
+        <div><label>Visibilité /20</label><select class="sc"><option value="0">0 · Très visible, rien à faire</option><option value="5">5 · Présence correcte</option><option value="10">10 · Présence moyenne</option><option value="15">15 · Quasi invisible</option><option value="20">20 · Invisible, gros potentiel</option></select></div>
+        <div><label>Autorité réelle /20</label><select class="sc"><option value="0">0 · Expertise floue</option><option value="5">5 · Correct</option><option value="10">10 · Bon expert</option><option value="15">15 · Très bon, reconnu localement</option><option value="20">20 · Expert évident, autorité dormante</option></select></div>
+        <div><label>Maturité /20</label><select class="sc"><option value="0">0 · Cherche du gratuit</option><option value="5">5 · Curieux</option><option value="10">10 · Conscient du problème</option><option value="15">15 · A déjà investi en marketing</option><option value="20">20 · Cherche activement, budget assumé</option></select></div>
+        <div><label>Urgence /20</label><select class="sc"><option value="0">0 · Aucune</option><option value="5">5 · « Un jour peut-être »</option><option value="10">10 · Ce trimestre</option><option value="15">15 · Ce mois-ci</option><option value="20">20 · Douleur immédiate exprimée</option></select></div>
+        <div><label>Décideur /20</label><select class="sc"><option value="0">0 · Non, et décideur inaccessible</option><option value="10">10 · Influence le décideur</option><option value="20">20 · C'est lui qui signe</option></select></div>
+        <div style="text-align:center"><label>Total</label><div id="scoreTotal">0</div><div id="verdict" class="v-out">Remplissez le score</div></div>
+      </div>
+      <p class="note">Règle dure : « Plus de 2h de route » = sortie immédiate, quel que soit le score.</p>
+      <div class="actions-row">
+        <button class="btn" onclick="saveFiche()">Enregistrer la fiche</button>
+        <button class="btn ghost" onclick="exportFiches()">Exporter les fiches du jour</button>
+        <span class="note" id="ficheCopied"></span>
+      </div>
+      <p class="note" style="margin-top:8px"><b class="fiche-count-display">0 fiche enregistrée aujourd'hui.</b></p>
+    </div>
+    <button id="cmBackToMission" class="btn btn-primary btn-xl">Terminer, retour à la Mission</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODE 3 — BIBLIOTHÈQUE
+     ============================================================ -->
+<section id="mode-bibliotheque" class="mode-screen">
+  <header class="lib-head">
+    <div id="searchWrap">
+      <input id="searchInput" type="search" placeholder="Rechercher une réplique, une objection…" autocomplete="off">
+      <div id="searchResults"></div>
+    </div>
+  </header>
+  <div id="libTabs" class="lib-tabs">
+    <button data-lib="formation" class="on">Formation</button>
+    <button data-lib="personas">Personas</button>
+    <button data-lib="accroches">Accroches</button>
+    <button data-lib="questions">Questions</button>
+    <button data-lib="objections">Objections</button>
+    <button data-lib="prospects">Prospects</button>
+    <button data-lib="historique">Historique</button>
+    <button data-lib="parametres">Paramètres</button>
+  </div>
+
+  <!-- --- Formation --- -->
+  <div class="libPanel visible" data-libtab="formation">
+
+    <h2>Votre onboarding : 2 jours, lundi vous appelez</h2>
+    <p class="sub">Ce document n'est pas un script à apprendre par cœur. C'est un système de décision à utiliser pendant l'appel. Vous ne réfléchissez pas, vous suivez.</p>
+    <div class="card gold">
+      <h3 style="margin-top:0">Jour 1 : la mécanique</h3>
+      <ul class="clean">
+        <li>Commencez par « Comment réfléchir : les 3 moteurs » ci-dessous. C'est le cerveau de tout le système : curiosité, faire verbaliser, jamais de réponse directe. Lisez-le deux fois, il prime sur tout le reste.</li>
+        <li>Puis les règles d'or, les erreurs mortelles, et le moteur d'appel (onglet Personas). Deux fois chacune.</li>
+        <li>Apprenez la structure du moteur par cœur : Ouverture de la part de Loïc, Question d'ouverture, Creuser, Pivot, Conséquence, Décalage, Échange avec Loïc, Filtre, Verrouillage. La structure, pas les phrases.</li>
+        <li>Lisez les 6 familles d'accroches (onglet Accroches) à voix haute, debout, en enregistrant votre voix. Réécoutez : intonation descendante en fin de phrase, sinon recommencez. Retenez surtout : vous ne vendez rien, vous vérifiez si le profil mérite 15 minutes de Loïc.</li>
+        <li>Objectif du soir : dérouler le moteur persona « Dirigeant PME » sans regarder l'écran.</li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <h3 style="margin-top:0">Jour 2 : les carrefours</h3>
+      <ul class="clean">
+        <li>Onglet Objections : lisez chaque famille. Vous ne les apprenez pas, vous retenez OÙ elles sont. La barre « il dévie » du Copilote vous y amène en un clic pendant l'appel.</li>
+        <li>Jeu de rôle : quelqu'un vous balance des objections au hasard, vous cliquez, vous répondez. 30 minutes minimum.</li>
+        <li>Faites tourner le Copilote sur un appel fictif pour comprendre l'écran « Avant d'appeler » et le score de fin d'appel.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Lundi matin</h3>
+      <p>8h00 à 12h00 : zone verte, on n'y fait qu'appeler. Liste homogène préparée la veille, onglets fermés, debout, 40 appels minimum. Recherches et admin : l'après-midi, jamais entre deux appels. Chaque « non » est un point de données, pas un jugement sur vous.</p>
+      <p style="margin-top:8px"><b style="color:var(--laiton)">Votre outil de travail : le bouton « COMMENCER LE PROCHAIN APPEL » de la Mission.</b> Il ouvre le Copilote : une étape à la fois, le verbatim sous les yeux, les objections en un clic, et la clôture alimente les KPI toute seule.</p>
+      <p class="note">Rappel géographique : le plateau est à Roubaix. Tout prospect à plus de 2h de route sort de la liste (Hauts-de-France, Belgique frontalière, Paris limite).</p>
+    </div>
+
+    <h2>Comment réfléchir : les 3 moteurs</h2>
+    <p class="sub">Si tu ne retiens qu'une page, c'est celle-ci. Tout le reste en découle.</p>
+    <div class="card gold">
+      <h3 style="margin-top:0">Moteur 1 · Créer de la curiosité</h3>
+      <p>La seule question à vous poser pendant l'appel :</p>
+      <div class="verbatim">« Est-ce que mon prospect a envie d'en savoir plus ? »<em>Jamais : « Est-ce que j'ai bien présenté l'offre ? » Personne ne se soucie de votre présentation.</em></div>
+      <ul class="clean">
+        <li>Il pose une question ? Vous avez gagné la séquence. Il écoute poliment ? Vous êtes en train de perdre.</li>
+        <li>On révèle la stratégie (« devenir le premier choix »), jamais la tactique (le comment). Une boucle ouverte dans son cerveau vaut dix arguments.</li>
+        <li>Le retrait crée la traction : « Je ne suis même pas sûr qu'on puisse vous aider, mais... » En repoussant légèrement, c'est lui qui se tire vers vous.</li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <h3 style="margin-top:0">Moteur 2 · Faire verbaliser</h3>
+      <p>Un prospect qui explique son problème lui-même est déjà à moitié convaincu. Un prospect à qui on explique son problème résiste. Le cycle, partout, tout le temps :</p>
+      <div class="flow">Question → Silence → Réponse → Relance → Silence → Réponse</div>
+      <ul class="clean">
+        <li>Les relances universelles, à connaître par cœur : « C'est-à-dire ? » · « Comment ça ? » · « Et donc ? » · « Ça vous coûte quoi, ça, concrètement ? » · « Depuis combien de temps ? »</li>
+        <li>Le silence est un outil, pas un malaise. Après chaque question : bouche fermée, 3 secondes minimum. C'est lui qui comble.</li>
+        <li>Test de la fin d'appel : s'il a parlé moins de 60% du temps, vous avez expliqué. Explication = résistance.</li>
+      </ul>
+    </div>
+    <div class="card gold">
+      <h3 style="margin-top:0">Moteur 3 · Ne jamais répondre directement</h3>
+      <p>Toute réponse directe à une objection est un débat. Et un débat avec un prospect est toujours perdu. Une question AVANT toute réponse, sans exception.</p>
+      <div class="verbatim">Prospect : « On fait déjà des vidéos. »<br><br>Mauvais SDR : « Oui mais nous, on... » <span style="color:#e58a7a">(débat : perdu)</span><br><br>Excellent SDR : « Intéressant. Vous en êtes satisfait ? » ⏸<br>Puis : « Ça vous apporte combien de nouveaux clients, concrètement ? » ⏸<br>Puis : « Si vous pouviez améliorer une seule chose, ce serait laquelle ? » ⏸<em>Le prospect détruit son objection lui-même. Vous n'avez rien affirmé.</em></div>
+      <p class="note">Toutes les réponses de l'onglet Objections respectent ce moteur : quand une réponse affirmative existe, elle vient toujours APRÈS une question. Dans le doute pendant l'appel : posez une question, vous ne pouvez pas vous tromper.</p>
+    </div>
+
+    <h2>Les règles d'or</h2>
+    <p class="sub">Le delivery fait 80 à 95% du résultat. Le meilleur script au monde meurt avec un ton de télémarketeur.</p>
+    <div class="card gold">
+      <h3 style="margin-top:0">Voix et posture</h3>
+      <ul class="clean">
+        <li><b>Intonation descendante</b> en fin de phrase : autorité. Montante : hésitation, le prospect se méfie. Astuce : menton légèrement vers le bas.</li>
+        <li><b>Debout</b>, on sourit (ça s'entend), on parle <b>lentement</b>. Un stressé parle vite, un expert parle posé. Plus le prospect est haut placé, plus il parle lentement.</li>
+        <li><b>Silence après chaque question.</b> On se tait, c'est lui qui comble le vide. Astuce du verre d'eau : une gorgée dès qu'il finit de parler, ça vous empêche de couper.</li>
+        <li><b>Temps de parole : le prospect parle 60% minimum.</b> S'il parle, il s'approprie le problème. Si vous parlez, il résiste.</li>
+        <li>Chaque étape ne vend qu'une chose : le droit de continuer. On empile des micro-oui, on ne convainc pas.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Les mots</h3>
+      <table>
+        <tr><th style="width:50%">Interdits</th><th>Autorisés</th></tr>
+        <tr><td class="interdit">« Je vous dérange ? » · « Comment allez-vous ? » (ton montant) · « Avez-vous 30 secondes ? » · « C'est un appel à froid » · toute demande de permission</td><td class="autorise">« Je vous appelle de la part de Loïc. J'avais une question. » (la curiosité remplace la permission)</td></tr>
+        <tr><td class="interdit">communication, visibilité, prise de parole, contenu, vidéo, podcast, réseaux sociaux, studio, location, montage : à aucun moment de l'appel</td><td class="autorise">référence, visage incontournable de son secteur, crédibilité, autorité, influence, notoriété d'expert, image d'expert, leader d'opinion, interviews premium</td></tr>
+        <tr><td class="interdit">« solution tout-en-un », « leader du marché », « accompagnement », tout buzzword</td><td class="autorise">des problèmes précis et concrets : « choisi au mérite », « négocié sur le prix », « le confrère qu'on voit passer »</td></tr>
+        <tr><td class="interdit">« Êtes-vous intéressé par... ? » (question orientée oui : réactance)</td><td class="autorise">questions inversées : « C'est un mauvais moment ? » · « Seriez-vous fermé à l'idée de... ? »</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Les 6 erreurs qui tuent</h3>
+      <ul class="clean">
+        <li>Argumenter contre une objection. On ne débat jamais : on accepte, on divise, on redirige (méthode Miyagi, onglet Objections).</li>
+        <li>Pitcher le produit. Le but de l'appel est de vendre le RDV, jamais la prestation. Ratio 80/20 : 80% sur son problème, 20% sur la suite.</li>
+        <li>Faire des recherches entre deux appels. La prep se fait la veille, en bloc. Entre deux appels : rien, on enchaîne.</li>
+        <li>Pitcher le barrage secrétaire. Le gatekeeper bloque dès qu'il entend un pitch.</li>
+        <li>Lire mot à mot. Le cockpit est une béquille, pas un fauteuil roulant : structure par cœur, mots à vous.</li>
+        <li>Prononcer « Studio 3K », « studio » ou « location », ou décrire la mécanique. Le studio est le moyen, jamais la promesse. Son cerveau doit visualiser une interview haut de gamme, pas une prestation.</li>
+      </ul>
+    </div>
+
+    <h2>Les erreurs mortelles</h2>
+    <p class="sub">Chacune de ces phrases tue l'appel en une seconde. Pas de deuxième chance : elles sont interdites, pas déconseillées.</p>
+    <div class="card"><b><span class="tag non">Interdit</span> « Merci de m'avoir accordé quelques minutes »</b>
+      <div class="verbatim">Vous venez de vous placer en dessous. Un émissaire mandaté par un expert ne remercie pas pour l'oxygène.<em>À la place : « Je vous appelle de la part de Loïc. J'avais une question. »</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> « Est-ce que je peux vous présenter... »</b>
+      <div class="verbatim">Le mot « présenter » vous classe vendeur. Le cerveau du prospect ferme la porte avant la fin de la phrase.<em>À la place : « Je peux vous dire ce que je remarque chez les [persona] comme vous ? »</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> « Nous faisons... » / « Nous sommes une agence qui... »</b>
+      <div class="verbatim">Le prospect se fiche de ce que vous faites. Il se soucie de ce qu'il perd, lui, en ce moment.<em>À la place : parler de SON problème. « Les boîtes les mieux dirigées, ce ne sont souvent pas celles qu'on connaît. »</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> Parler plus de 30 secondes d'affilée</b>
+      <div class="verbatim">À 30 secondes de monologue, il ne vous écoute plus, il attend que ça passe.<em>Réflexe : toute prise de parole se termine par une question. Sans exception.</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> Répondre immédiatement à une objection</b>
+      <div class="verbatim">Réponse immédiate = débat = perdu. C'est le Moteur 3.<em>Toujours une question avant : « Intéressant. Vous en êtes satisfait ? »</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> « Désolé de vous déranger » / « Je ne vous dérangerai pas longtemps »</b>
+      <div class="verbatim">Vous venez de confirmer que vous dérangez. Le prospect n'y avait pas encore pensé, maintenant si.<em>À la place : assumer, sans s'excuser. « Je vous appelle de la part de Loïc. J'avais une question. »</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> Combler le silence</b>
+      <div class="verbatim">Vous posez une bonne question, il réfléchit 2 secondes, vous paniquez et vous répondez à sa place. La question est morte, l'information est perdue.<em>Règle : après une question, le premier qui parle a perdu.</em></div></div>
+    <div class="card"><b><span class="tag non">Interdit</span> Le sur-acquiescement : « d'accord, super, parfait, génial, top »</b>
+      <div class="verbatim">Chaque « super ! » enthousiaste sent le vendeur mort de faim. Le désespoir s'entend.<em>À la place : « Ok. » « Je vois. » « Intéressant. » Sobre, posé, un expert n'est pas surpris.</em></div></div>
+
+    <h2>Choisir la bonne famille</h2>
+    <p class="sub">Sur l'écran « Avant d'appeler », le Copilote applique cette logique tout seul dès que vous cochez un diagnostic. Dans le doute (ou rien coché) : Famille 1 (auto-diagnostic), le défaut universel.</p>
+    <div class="card">
+      <table>
+        <tr><th>Si...</th><th>Alors...</th><th>Angle</th></tr>
+        <tr><td>Aucune info particulière trouvée</td><td><b>Famille 1 · Auto-diagnostic</b></td><td>« Vous vous mettriez combien sur 10 ? » : le défaut universel</td></tr>
+        <tr><td>Vrai expert, image en ligne faible ou amateur</td><td><b>Famille 2 · Le décalage</b></td><td>« Vous valez clairement plus que ce que l'on voit de vous »</td></tr>
+        <tr><td>Cabinet installé, secteur concurrentiel, égo</td><td><b>Famille 3 · Le concurrent</b></td><td>« Pourquoi lui, à votre avis, alors qu'il n'est pas meilleur ? »</td></tr>
+        <tr><td>Barrage probable, profession à statut</td><td><b>Famille 4 · L'autorité</b></td><td>« Votre profil est ressorti, Loïc m'a demandé de vérifier »</td></tr>
+        <tr><td>Parcours client cassé : rien sur Google, aucun témoignage, pas de suite</td><td><b>Famille 5 · L'opportunité manquée</b></td><td>« Combien repartent avant même de vous appeler ? »</td></tr>
+        <tr><td>Une observation précise et vraie (post ancien, avis sans réponses, aucun visage, signal chaud)</td><td><b>Famille 6 · La curiosité</b></td><td>« J'ai remarqué quelque chose. Je peux vous le dire ? »</td></tr>
+        <tr><td>Forte croissance, recrute</td><td><b>Famille 2 · Le décalage</b> (angle talents)</td><td>« Les talents choisissent le patron qu'ils connaissent »</td></tr>
+        <tr><td>2e ou 3e tentative, mail déjà envoyé</td><td><b>Famille 4 · L'autorité</b> (rappel)</td><td>« Loïc m'a redemandé de vous joindre au sujet de sa note »</td></tr>
+      </table>
+    </div>
+
+    <h2>Qualification guidée</h2>
+    <p class="sub">Ce que le Copilote calcule automatiquement à l'étape « Qualifier » d'un appel réel. La question pivot, puis vous suivez le chemin correspondant à sa réponse.</p>
+    <div class="card gold">
+      <h3 style="margin-top:0">Question pivot</h3>
+      <div class="verbatim" id="qualPivot"></div>
+      <div class="objTabs" id="qualTabs" style="margin-top:10px"></div>
+    </div>
+    <div id="qualPanels"></div>
+
+    <h2>Closing : 10 façons de proposer l'échange avec Loïc</h2>
+    <p class="sub">On ne vend jamais un rendez-vous commercial. On propose un échange de 15-20 minutes où Loïc analyse le profil, le positionnement, le potentiel, et dit honnêtement si une stratégie de référence a du sens. Il ne le fait pas avec tout le monde : c'est le prospect qui se qualifie. Jamais « êtes-vous d'accord pour qu'on se rencontre ? »</p>
+    <div class="card"><b>1 · L'alternative simple</b> <span class="tag or">défaut</span><div class="verbatim">« Vous seriez plutôt début ou fin de semaine ? » ⏸ « Matin ou après-midi ? » ⏸ « Parfait, mardi 11h, je vous envoie l'invitation tout de suite. »</div></div>
+    <div class="card"><b>2 · L'alternative double</b><div class="verbatim">« Demain ou jeudi ? 14h ou 16h ? »</div></div>
+    <div class="card"><b>3 · La question négative</b><div class="verbatim">« Seriez-vous fermé à l'idée que Loïc regarde votre cas 15 minutes ? »<em>Par réactance, le « non » devient une permission.</em></div></div>
+    <div class="card"><b>4 · La mauvaise idée</b><div class="verbatim">« Est-ce que ce serait une mauvaise idée qu'il vous prenne 15 minutes mardi 14h ou mercredi 9h ? »</div></div>
+    <div class="card"><b>5 · La projection (future pacing)</b><div class="verbatim">« Imaginons qu'après ces 15 minutes, vous sachiez exactement ce qui vous sépare du statut de référence sur votre zone, et si ça vaut le coup d'y aller. Un inconvénient à le savoir, sachant que vous ne décidez rien ? »</div></div>
+    <div class="card"><b>6 · Le retrait rationnel</b><div class="verbatim">« En supposant que Loïc voie un vrai potentiel sur votre profil, il y a une raison rationnelle de ne pas prendre 15 minutes pour le savoir ? Jeudi ou vendredi ? »</div></div>
+    <div class="card"><b>7 · La sélectivité</b><div class="verbatim">« Je dois rendre ma liste à Loïc ce soir. Si je vous mets dedans, vous tenez le créneau ? »<em>La rareté inverse la vente : c'est une place, pas une sollicitation. À réserver aux appels où vous avez le lead.</em></div></div>
+    <div class="card"><b>8 · L'analyse offerte</b><div class="verbatim">« Je ne vous propose rien, ce n'est pas mon rôle. Loïc analyse votre positionnement et vous dit honnêtement si une stratégie de référence a du sens pour vous, ou pas. Si c'est non, il vous le dit aussi, et vous n'entendez plus parler de nous. »</div></div>
+    <div class="card"><b>9 · La validation de potentiel</b><div class="verbatim">« Vous n'allez rien acheter, et ce n'est pas le but. Mais vous saurez trois choses : où vous en êtes, ce qui vous manque, et si ça vaut le coup. Ça, vous le gardez, quoi qu'il arrive. »</div></div>
+    <div class="card"><b>10 · Le verrouillage humour</b><div class="verbatim">« Vous n'allez pas raccrocher et regretter d'avoir accepté, n'est-ce pas ? »<em>Juste après le oui, sourire audible.</em></div></div>
+    <div class="card gold">
+      <h3 style="margin-top:0">Le rituel post-oui (jamais sauté, dans cet ordre)</h3>
+      <ul class="clean">
+        <li><b>Invitation immédiate :</b> « Je vous envoie l'invitation là tout de suite. Acceptez-la, comme ça je confirme à Loïc que le créneau est pris. »</li>
+        <li><b>Le filtre (15 secondes après le oui, jamais avant) :</b> « Avant que je bloque : Loïc est exigeant sur les profils. Le plateau est à Roubaix, et il travaille avec des activités qui tournent déjà. Vous êtes à quelle distance, et vous êtes combien ? » Hors cible : c'est VOUS qui annulez.</li>
+        <li><b>L'engagement réciproque :</b> « Il prépare toujours un peu le profil avant l'échange, donc bloquez vraiment le créneau. » Annuler devient coûteux : quelqu'un a déjà travaillé pour lui.</li>
+        <li><b>Goodwill la veille :</b> mail écrit main avec un détail personnel repéré (« Loïc a vu votre dernier dossier sur X, il veut vous en parler »). Jamais un rappel automatique sec.</li>
+      </ul>
+    </div>
+
+    <h2>Après l'appel</h2>
+    <p class="sub">Trois scénarios, trois séquences. Rien n'est laissé au jugement.</p>
+    <div class="card gold">
+      <h3 style="margin-top:0">RDV pris</h3>
+      <ul class="clean">
+        <li>Dans la minute : invitation calendrier envoyée et acceptation demandée à l'oral.</li>
+        <li>SMS dans l'heure : « [Prénom], c'est calé pour [jour, heure]. Vous recevrez le lien / l'adresse par mail. À très vite. »</li>
+        <li>La veille : mail goodwill personnalisé (une info trouvée sur lui, pas un rappel robot).</li>
+        <li>Fiche + score dans le CRM le jour même.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">No-show (règle 2-4-6)</h3>
+      <ul class="clean">
+        <li>+2 min : mail de relance avec le lien.</li>
+        <li>+4 min : premier appel.</li>
+        <li>+6 min : deuxième appel (seule exception au double appel).</li>
+        <li>Sans réponse : on ne supprime PAS l'invitation, on la décale de 3-4 jours + mail avec deux créneaux de secours.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Pas de RDV (mais conversation eue)</h3>
+      <ul class="clean">
+        <li>J+1 : mail court reprenant SES mots (le problème qu'il a reconnu), zéro pitch.</li>
+        <li>J+7 : deuxième appel. Pas de réponse : répondeur M1 (voir ci-dessous).</li>
+        <li>J+30 : dernier appel. Pas de réponse : répondeur M2, puis sortie ou nurturing.</li>
+        <li>Plafond : 5 tentatives sur 4 semaines maximum par prospect, ensuite on passe.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3 style="margin-top:0">Répondeur (Double Tap, zéro pitch : un vocal double le taux de réponse au mail)</h3>
+      <div class="verbatim">M1 (15 sec) : « Bonjour [Prénom], [Prénom], je vous appelle de la part de Loïc. Rien d'urgent, pas besoin de me rappeler : je vous envoie un mail là tout de suite, dites-moi juste si c'est pertinent. À bientôt. »</div>
+      <div class="verbatim">M2 (30 sec) : « Rebonjour [Prénom]. Loïc accompagne des [persona]s à devenir les références de leur secteur, et votre profil est ressorti. Vous êtes sûrement déjà bien installé là-dessus, mais je vous renvoie un mail : répondez-moi juste oui ou non. Merci. »</div>
+      <p class="note">Tout l'argumentaire va dans le mail, jamais dans le vocal. Maximum 2 vocaux par prospect.</p>
+    </div>
+  </div>
+
+  <!-- --- Personas --- -->
+  <div class="libPanel" data-libtab="personas">
+    <h2>Personas</h2>
+    <p class="sub">Choisis un profil pour voir ce qui fonctionne le mieux avec lui.</p>
+    <div id="libPersonaBar" class="precall-personas" data-persona-bar>
+      <button data-p="pme" class="on">Dirigeant PME</button>
+      <button data-p="ec">Expert-comptable</button>
+      <button data-p="coach">Coach / Thérapeute</button>
+      <button data-p="avocat">Avocat</button>
+      <button data-p="local">Indépendant local</button>
+    </div>
+    <div id="personaFocusBox"></div>
+    <h3>Le moteur d'appel complet pour ce profil</h3>
+    <div id="moteur"></div>
+  </div>
+
+  <!-- --- Accroches --- -->
+  <div class="libPanel" data-libtab="accroches">
+    <h2>Les familles d'accroches</h2>
+    <p class="sub">6 familles psychologiques, jamais une liste de phrases à réciter.</p>
+    <div id="accList"></div>
+  </div>
+
+  <!-- --- Questions --- -->
+  <div class="libPanel" data-libtab="questions">
+    <h2>La banque de questions</h2>
+    <p class="sub">Ce sont les questions qui vendent, jamais les réponses.</p>
+    <div id="questionsList"></div>
+  </div>
+
+  <!-- --- Objections --- -->
+  <div class="libPanel" data-libtab="objections">
+    <h2>Objections</h2>
+    <p class="sub">Toujours une question d'abord — jamais de réponse directe. Le prospect démonte lui-même son objection.</p>
+    <div class="objTabs" id="objTabs">
+      <button class="on" data-o="temps">Temps</button>
+      <button data-o="prix">Prix / Budget</button>
+      <button data-o="confiance">Confiance / Pas intéressé</button>
+      <button data-o="concurrent">Concurrent / Équipé</button>
+      <button data-o="mail">« Envoyez un mail »</button>
+      <button data-o="barrage">Barrage</button>
+      <button data-o="divers">Divers</button>
+    </div>
+    <div id="objContent"></div>
+  </div>
+
+  <!-- --- Prospects --- -->
+  <div class="libPanel" data-libtab="prospects">
+    <h2>Prospects qualifiés — Nord (59)</h2>
+    <p class="sub">48 prospects dans 6 segments : Finance, Avocats, Immobilier, Startups, Experts, Agences. Cliquez pour voir le détail et l'angle d'approche personnalisé.</p>
+    <div class="prospectsTabs" id="prospectsTabs">
+      <button class="on" data-segment="finance">Finance</button>
+      <button data-segment="avocats">Avocats</button>
+      <button data-segment="immobilier">Immobilier</button>
+      <button data-segment="startups">🚀 Startups</button>
+      <button data-segment="experts">🎯 Experts</button>
+      <button data-segment="agences">🤝 Agences</button>
+    </div>
+    <div id="prospectsContent"></div>
+  </div>
+
+  <!-- --- Historique --- -->
+  <div class="libPanel" data-libtab="historique">
+    <h2>Historique</h2>
+    <p class="sub">Les KPI se mettent à jour tout seuls à chaque appel terminé.</p>
+    <div class="kpiGrid">
+      <div class="kpi"><div class="n" id="k-appels">0</div><div class="l">Appels</div><button onclick="kpi('appels',1)">+1</button> <button onclick="kpi('appels',-1)">−</button></div>
+      <div class="kpi"><div class="n" id="k-decroches">0</div><div class="l">Décrochés</div><button onclick="kpi('decroches',1)">+1</button> <button onclick="kpi('decroches',-1)">−</button></div>
+      <div class="kpi"><div class="n" id="k-conversations">0</div><div class="l">Conversations</div><button onclick="kpi('conversations',1)">+1</button> <button onclick="kpi('conversations',-1)">−</button></div>
+      <div class="kpi"><div class="n" id="k-rdv">0</div><div class="l">RDV posés</div><button onclick="kpi('rdv',1)">+1</button> <button onclick="kpi('rdv',-1)">−</button></div>
+      <div class="kpi"><div class="n" id="k-show">0</div><div class="l">Shows</div><button onclick="kpi('show',1)">+1</button> <button onclick="kpi('show',-1)">−</button></div>
+      <div class="kpi"><div class="n" id="k-signature">0</div><div class="l">Signatures</div><button onclick="kpi('signature',1)">+1</button> <button onclick="kpi('signature',-1)">−</button></div>
+    </div>
+    <div class="golden">
+      <div><b id="g-connect">0%</b>Connect Rate<br><span class="note">décrochés / appels</span></div>
+      <div><b id="g-set">0%</b>Set Rate<br><span class="note">RDV / conversations</span></div>
+      <div><b id="g-show">0%</b>Show Rate<br><span class="note">shows / RDV</span></div>
+    </div>
+    <div class="actions-row">
+      <button class="btn ghost" onclick="copyKpi()">Copier la ligne CSV du jour</button>
+      <button class="btn ghost" onclick="resetKpi()">Remise à zéro (nouveau jour)</button>
+      <span class="note" id="kpiCopied"></span>
+    </div>
+    <div class="card" style="margin-top:16px">
+      <h3 style="margin-top:0">Fiches prospects</h3>
+      <p class="note"><b class="fiche-count-display">0 fiche enregistrée aujourd'hui.</b></p>
+      <button class="btn ghost" onclick="exportFiches()">Exporter les fiches du jour</button>
+    </div>
+  </div>
+
+  <!-- --- Paramètres --- -->
+  <div class="libPanel" data-libtab="parametres">
+    <h2>Paramètres</h2>
+    <div class="settingsRow">
+      <div><div class="lbl">Thème clair</div><div class="desc">Bascule entre sombre (par défaut) et clair.</div></div>
+      <label class="switch"><input type="checkbox" id="themeSwitch"><span class="slider"></span></label>
+    </div>
+    <div class="settingsRow">
+      <div><div class="lbl">Objectif d'appels du jour</div><div class="desc">Utilisé pour la barre de progression de la Mission.</div></div>
+      <input type="number" id="dailyObjectiveInput" min="1" style="width:90px;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;text-align:center">
+    </div>
+
+    <h3 style="margin-top:32px; color:var(--laiton-clair)">Intégration Notion</h3>
+    <p class="note">Synchronisez vos clients avec une base Notion pour une sauvegarde centralisée.</p>
+
+    <div class="settingsRow">
+      <div><div class="lbl">Token Notion</div><div class="desc">Créez une intégration sur https://www.notion.so/my-integrations</div></div>
+      <input type="password" id="notionToken" placeholder="secret_..." style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;max-width:300px">
+    </div>
+    <div class="settingsRow">
+      <div><div class="lbl">ID Base de données Notion</div><div class="desc">L'UUID de votre database (voir URL de la base)</div></div>
+      <input type="text" id="notionDbId" placeholder="xxxx-xxxx-xxxx-xxxx" style="flex:1;background:var(--bg3);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:8px;max-width:300px">
+    </div>
+    <div class="actions-row">
+      <button class="btn ghost" id="saveNotionConfig" style="flex:0">Enregistrer config</button>
+      <button class="btn ghost" id="clearNotionConfig" style="flex:0">Effacer config</button>
+      <span class="note" id="notionConfigMsg"></span>
+    </div>
+
+    <div class="settingsRow">
+      <div><div class="lbl">Réinitialiser les données</div><div class="desc">Efface les fiches, les KPI du jour et les préférences.</div></div>
+      <button class="btn ghost" id="resetAllData">Effacer</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MODE 4 — FICHIER CLIENTS (Poste de travail)
+     ============================================================ -->
+<section id="mode-clients" class="mode-screen ws-container">
+  <div class="ws-sidebar">
+    <header class="ws-header">
+      <h2>Fichier Clients</h2>
+      <div id="clientsFlash" class="note" style="margin-top:4px;"></div>
+    </header>
+
+    <div class="ws-search-box">
+      <input id="wsSearch" type="search" placeholder="Rechercher..." autocomplete="off">
+    </div>
+
+    <div class="ws-filters">
+      <div class="filter-group">
+        <label>Statut</label>
+        <div class="filter-buttons">
+          <button class="filter-btn" data-filter="status" data-value="">Tous</button>
+          <button class="filter-btn" data-filter="status" data-value="a_appeler">À appeler</button>
+          <button class="filter-btn" data-filter="status" data-value="appele">Appelé</button>
+          <button class="filter-btn" data-filter="status" data-value="relance">Relance</button>
+          <button class="filter-btn" data-filter="status" data-value="rdv">RDV</button>
+          <button class="filter-btn" data-filter="status" data-value="client">Client</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <label>Score minimum</label>
+        <input id="wsMinScore" type="range" min="0" max="100" value="0">
+        <span id="wsMinScoreLabel">0</span>
+      </div>
+    </div>
+
+    <div style="padding:16px 12px; gap:8px; display:flex; flex-direction:column;">
+      <button class="btn btn-primary" onclick="openNextProspect()">▶ Prospect suivant</button>
+      <button class="btn" onclick="showClientForm()">+ Ajouter client</button>
+      <button class="btn ghost" id="syncClientsBtn">↻ Sync Notion</button>
+      <button class="btn ghost" onclick="exportClients()">↓ Export CSV</button>
+    </div>
+
+    <div id="workstationList" class="ws-list"></div>
+  </div>
+
+  <div class="ws-panel" id="workstationPanel"></div>
+
+  <!-- Formulaire d'ajout/modification -->
+  <div id="clientFormPanel" class="modal-overlay">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 id="clientFormTitle" style="margin:0;">Ajouter un client</h2>
+        <button id="closeClientForm" class="btn ghost" style="width:32px; height:32px; padding:0; font-size:20px;">✕</button>
+      </div>
+
+      <div class="fiche">
+        <div><label>Nom</label><input id="cf-nom" placeholder="Ex: Jean Dupont"></div>
+        <div><label>Entreprise</label><input id="cf-entreprise" placeholder="Ex: ABC Consulting"></div>
+        <div><label>Email</label><input id="cf-email" type="email" placeholder="contact@example.com"></div>
+        <div><label>Téléphone</label><input id="cf-telephone" placeholder="06 12 34 56 78"></div>
+        <div><label>Site web</label><input id="cf-site" placeholder="https://example.com"></div>
+        <div><label>Ville</label><input id="cf-ville" placeholder="Lille"></div>
+        <div><label>Persona</label>
+          <select id="cf-persona">
+            <option value="">Non défini</option>
+            <option value="Dirigeant PME">Dirigeant PME</option>
+            <option value="Expert-comptable">Expert-comptable</option>
+            <option value="Coach / Thérapeute">Coach / Thérapeute</option>
+            <option value="Avocat">Avocat</option>
+            <option value="Indépendant local">Indépendant local</option>
+          </select>
+        </div>
+        <div><label>Score 3K</label><input id="cf-score" type="number" min="0" max="100" value="0"></div>
+        <div class="full"><label>Notes</label><textarea id="cf-notes" rows="3" placeholder="Contexte, observations..."></textarea></div>
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:16px;">
+        <button id="saveClientBtn" class="btn btn-primary" style="flex:1;">Enregistrer</button>
+        <button class="btn ghost" onclick="hideClientForm()">Annuler</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- ============================================================
+     BARRE DE NAVIGATION (masquée pendant un appel)
+     ============================================================ -->
+<nav id="tabBar">
+  <button data-mode="mission" class="on">Mission</button>
+  <button data-mode="bibliotheque">Bibliothèque</button>
+  <button data-mode="clients">Clients</button>
+</nav>
+
+<!-- PWA : bannière d'installation -->
+<div id="installBanner">
+  <div class="txt" id="installText"><b>Installer 3KOS SalesOS</b>Ajoute l'app à ton écran d'accueil pour l'utiliser hors ligne, en plein écran.</div>
+  <div style="display:flex;gap:8px;flex-shrink:0">
+    <button class="btn" id="installAction">Installer</button>
+    <button class="btn ghost" id="installDismiss">Plus tard</button>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

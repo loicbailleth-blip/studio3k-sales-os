@@ -1,0 +1,40 @@
+/* ===================== TABLETTE / DESKTOP ÉTROIT ===================== */
+@media(min-width:640px){
+  .mission-body{padding-top:var(--space-8)}
+}
+
+/* ===================== TÉLÉPHONE : UNE COLONNE, GROS BOUTONS ===================== */
+@media(max-width:600px){
+  body{font-size:var(--text-base)}
+  h2{font-size:var(--text-lg)}
+  .card{padding:var(--space-3) var(--space-4)}
+  .fiche{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto;white-space:nowrap}
+  .kpiGrid{grid-template-columns:repeat(2,1fr)}
+  .kpi .n{font-size:var(--text-xl)}
+  .golden{flex-direction:column}
+  .mission-stats{flex-direction:column}
+  .cm-chrono{font-size:var(--text-lg);min-width:64px}
+  #cmProspect{width:100%}
+  .cm-head{flex-direction:column;align-items:stretch}
+  .cm-verbatim{font-size:var(--text-md);padding:var(--space-4)}
+}
+
+@media(max-width:380px){
+  .kpiGrid{grid-template-columns:1fr 1fr}
+  .cm-chrono{font-size:var(--text-md)}
+}
+
+/* Confort tactile général : cibles d'au moins 44px sur écrans tactiles, quelle que soit la largeur */
+@media(hover:none) and (pointer:coarse){
+  .lib-tabs button,.objTabs button,.precall-personas button,.diag label,.kpi button,#tabBar button{min-height:44px}
+  .btn,.btn.ghost{min-height:48px}
+}
+
+@media(max-width:900px) and (orientation:landscape){
+  .cm-precall,.cm-live{padding-top:var(--space-3)}
+}
+
+@media print{
+  #tabBar,#mode-copilote,#installBanner,#offlinePill{display:none!important}
+}

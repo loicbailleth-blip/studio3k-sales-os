@@ -1,0 +1,484 @@
+{
+  "finance": [
+    {
+      "id": "nfg-conseils",
+      "nom": "NFG-Conseils",
+      "specialite": "Pilotage financier & DAF",
+      "ville": "Lille",
+      "site": "https://nfg-conseils.fr/",
+      "priorite": 1,
+      "angle": "Optimiser votre tunnel de conversion : transformer vos milliers de vues en rendez-vous qualifiés via le lien dans votre bio. Loïc aide les DAF et conseillers patrimoniaux à passer de l'invisible (expertise) à l'incontournable (content).",
+      "strategie": "4 Reels/semaine sur l'épargne fiscale, retraite, et gestion de patrimoine. Focus audience 35-60 ans."
+    },
+    {
+      "id": "capfinances",
+      "nom": "Capfinances",
+      "specialite": "Gestion de patrimoine",
+      "ville": "Lille",
+      "site": "https://capfinances.fr/capfinances-lille/",
+      "priorite": 2,
+      "angle": "Améliorer la rétention de vos vidéos pédagogiques : structurer vos concepts complexes en 60 secondes. Les clients potentiels regardent mais ne contactent pas ? C'est un problème de clarté d'appel à l'action.",
+      "strategie": "Mini-série « 5 erreurs patrimoine » + CTAs clairs (lien calendrier + WhatsApp)."
+    },
+    {
+      "id": "global-patrimoine",
+      "nom": "GLOBAL PATRIMOINE",
+      "specialite": "Gestion de patrimoine & fiscalité",
+      "ville": "Lille",
+      "site": "https://www.global-patrimoine.fr/",
+      "priorite": 2,
+      "angle": "Augmenter vos leads qualifiés en passant 2h/semaine au contenu court au lieu de 10h de montage. L'expert-comptable qui produit des Reels sur l'immobilier fiscalisé ? Il triple ses RDV.",
+      "strategie": "Outsourcer la production à Loïc, se concentrer sur la substance. Résultat : 4 Reels/semaine sans stress."
+    },
+    {
+      "id": "magellan-conseil",
+      "nom": "Magellan Conseil",
+      "specialite": "Conseil en gestion de patrimoine",
+      "ville": "Lille",
+      "site": "https://www.magellanconseil.fr/",
+      "priorite": 3,
+      "angle": "Humaniser votre image d'expert : transformer vos clients satisfaits en testimonials authentiques. Les clients potentiels achètent la personne avant la compétence.",
+      "strategie": "« Success stories clients » (anonymisés) : avant/après patrimoines, cas d'usage réels, résultats chiffrés."
+    },
+    {
+      "id": "fidelis-patrimoine",
+      "nom": "Fidelis Patrimoine",
+      "specialite": "Gestion patrimoine & investissement",
+      "ville": "Marcq-en-Baroeul",
+      "site": "https://www.lille-investissement.fr/",
+      "priorite": 2,
+      "angle": "Créer un content pillar « épargne fiscale » : 4 Reels/semaine pour capter les 35-60 ans en quête d'optimisation. Vous êtes expert, montrez-le.",
+      "strategie": "Série structurée : « SCI vs direct », « Amortissement immobilier », « Retirement planning »."
+    },
+    {
+      "id": "liins",
+      "nom": "Liins",
+      "specialite": "Cabinet conseil financier",
+      "ville": "Lille",
+      "site": "https://liins.fr/cabinet-conseil/lille/",
+      "priorite": 3,
+      "angle": "Structurer votre stratégie LinkedIn : passer du réseau fermé au B2B wealth management pour dirigeants lillois. Vos pairs sont sur LinkedIn, pas sur Instagram.",
+      "strategie": "3 posts/semaine sur leadership financier, fiscalité dirigeant, valuation d'entreprise."
+    },
+    {
+      "id": "france-gestion-patrimoine",
+      "nom": "France Gestion Patrimoine",
+      "specialite": "Conseil patrimonial",
+      "ville": "Nord",
+      "site": "https://www.france-gestion-patrimoine.com/",
+      "priorite": 3,
+      "angle": "Décupler votre acquisition de leads sur la région : 1 Reel par jour adapté à votre territoire. Les concurrents lillois ? Ils vendent sur Lille, vous allez capter Douai, Valenciennes, Dunkerque.",
+      "strategie": "Geo-targeting par zone du Nord : « conseils patrimoine Douai », « retraite Valenciennes »."
+    }
+  ],
+  "avocats": [
+    {
+      "id": "me-valérie-duez",
+      "nom": "Maître Valérie Duez",
+      "specialite": "Droit du travail & contentieux",
+      "ville": "Lille",
+      "site": "À compléter",
+      "priorite": 1,
+      "angle": "Gagner 5h/semaine en montage vidéo : structurer des Reels explicatifs sur le droit du travail (contentieux récurrents, ruptures conventionnelles). Chaque heure montage = heure de conseil perdue.",
+      "strategie": "« Les 5 pièges de la rupture de contrat » + FAQ vidéo droit du travail. 3 Reels/semaine."
+    },
+    {
+      "id": "me-chahineze-meddeber",
+      "nom": "Maître Chahineze Meddeber",
+      "specialite": "Droit fiscal & droit des affaires",
+      "ville": "Roubaix",
+      "site": "À compléter",
+      "priorite": 1,
+      "angle": "Doubler vos dossiers : structurer une série de Reels sur les pièges fiscaux et optimisation fiscale (audience B2B via LinkedIn + Instagram). Le patron qui optimise mal sa fiscalité ? Il perd des milliers par an.",
+      "strategie": "Série « Pièges fiscaux pour entrepreneurs » + cas d'usage réels. 3 Reels/semaine."
+    },
+    {
+      "id": "me-yohan-dehan",
+      "nom": "Maître Yohan Dehan",
+      "specialite": "Droit du travail & droit social",
+      "ville": "Lille",
+      "site": "À compléter",
+      "priorite": 2,
+      "angle": "Devenir la référence locale en droit du travail : 3 Reels/semaine sur les questions les plus posées (CDI vs CDD, préavis, discriminations). Vous êtes expert, le marché ne le sait pas.",
+      "strategie": "FAQ Reels localisée : « Droit du travail Lille », réponses aux questions classiques."
+    },
+    {
+      "id": "me-sophie-bernard",
+      "nom": "Maître Sophie Bernard",
+      "specialite": "Droit de la famille & divorce",
+      "ville": "Tourcoing",
+      "site": "À compléter",
+      "priorite": 2,
+      "angle": "Humaniser votre expertise : transformer les success stories clients (anonymisés) en Reels de testimonials. Les clients achètent la confiance, pas le prix.",
+      "strategie": "« Cas résolus » Reels + explications étapes juridiques. Format court (60-90s)."
+    }
+  ],
+  "immobilier": [
+    {
+      "id": "legacy",
+      "nom": "Legacy",
+      "specialite": "Conseil investissement immobilier",
+      "ville": "Lille",
+      "site": "https://www.legacy-investissement.fr/",
+      "priorite": 1,
+      "angle": "Doubler votre acquisition de leads : structurer une stratégie Reels + TikTok autour des pièges classiques de l'investissement locatif (emprunts, défiscalisation, régies). Vos vues = prospects, pas clients.",
+      "strategie": "Série « Les 7 pièges de l'investissement locatif » + deals fermés (anonymisés). 5 Reels/semaine."
+    },
+    {
+      "id": "vacherand-immobilier",
+      "nom": "Vacherand Immobilier",
+      "specialite": "Gestion & investissement immobilier",
+      "ville": "Lille",
+      "site": "https://www.vacherand.fr/",
+      "priorite": 1,
+      "angle": "Créer un funnel YouTube Shorts + TikTok : montrer les coulisses de vos acquisitions immobilières (avant/après, deals fermés, ROI). Les prospects veulent de la transparence, pas des slides.",
+      "strategie": "Weekly « acquisition story » : recherche → négociation → signature. Court-format, authentique."
+    },
+    {
+      "id": "detect-immobilier",
+      "nom": "Detect Immobilier",
+      "specialite": "Chasseurs immobiliers & investissement locatif",
+      "ville": "Lille",
+      "site": "https://www.detectimmobilier.com/",
+      "priorite": 2,
+      "angle": "Devenir incontournable pour les investisseurs lillois : lancer une série de testimonials de placements rentabilisés + guide des meilleures zones. Le chasseur qui montre ses succès ? Il remplace 50 appels froids.",
+      "strategie": "Testimonials clients + ROI cases studies. « Où investir Lille 2026 » guide (link in bio)."
+    },
+    {
+      "id": "pixel-courtage",
+      "nom": "Pixel Courtage Patrimoine",
+      "specialite": "Conseil investissement immobilier",
+      "ville": "Lille",
+      "site": "https://www.pixelgroupe.fr/",
+      "priorite": 2,
+      "angle": "Humaniser votre expertise : créer une mini-série de 5-10 Reels sur la fiscalité de l'immobilier (SCI avantages, revenus fonciers, amortissements, plus-values). Votre client pense « cher » au lieu d'« optimisé ».",
+      "strategie": "Série « Fiscalité immobilier » : SCI, défiscalisation, héritage. Chaque Reel un concept clé."
+    },
+    {
+      "id": "fidelis-immobilier",
+      "nom": "Fidelis Patrimoine (Immobilier)",
+      "specialite": "Investissement immobilier & patrimoine",
+      "ville": "Marcq-en-Baroeul",
+      "site": "https://www.lille-investissement.fr/immobilier/",
+      "priorite": 2,
+      "angle": "Multiplier vos demandes de consultation : lancer une stratégie de contenu clé en main « De la recherche à l'achat immobilier ». Guide pédagogique = pré-qualification massive.",
+      "strategie": "8-10 Reels : « Comment chercher », « Négocier prix », « Vérifier bien », « Financer », « Signer »."
+    },
+    {
+      "id": "immo-pour-pro",
+      "nom": "Immo Pour Pro",
+      "specialite": "Immobilier professionnel",
+      "ville": "Lille",
+      "site": "https://www.immopourpro.fr/",
+      "priorite": 3,
+      "angle": "Capter les entrepreneurs du Nord : lancer une série de Reels/Shorts sur les meilleures zones commerciales de la métropole lilloise et du Nord (Roubaix, Tourcoing, Douai). B2B immobilier = leads haut-ticket.",
+      "strategie": "Zones guide : « Où ouvrir à Lille », « Fonds de commerce Roubaix », « Bureaux Douai »."
+    }
+  ],
+  "startups": [
+    {
+      "id": "niryo-marc-henri",
+      "nom": "Marc-Henri Frouin",
+      "specialite": "Fondateur Niryo — Cobotique",
+      "ville": "Wambrechies",
+      "site": "https://niryo.com/",
+      "priorite": 1,
+      "angle": "Bonjour Marc-Henri, 10 M€ levés et une présence dans plus de 70 pays : Niryo a la traction, il lui manque surtout la voix qui va avec l'ambition de leader mondial. La cobotique made in France est un sujet ultra visuel, taillé pour le plateau, et personne ne le racontera mieux que vous.",
+      "strategie": "Interview plateau : transformer l'expertise technique en contenu de dirigeant. Audience : investisseurs + marque employeur. Fréquence : 1 épisode/trimestre."
+    },
+    {
+      "id": "reempro-jean-baptiste",
+      "nom": "Jean-Baptiste Duran",
+      "specialite": "Fondateur Réempro — Économie circulaire BTP",
+      "ville": "Sequedin",
+      "site": "https://reempro.fr/",
+      "priorite": 1,
+      "angle": "Bonjour Jean-Baptiste, félicitations pour les 1,6 M€ bouclés en juin pour industrialiser le réemploi. Vous entrez dans une phase où doubler les effectifs veut dire attirer les bons profils et convaincre les prochains investisseurs.",
+      "strategie": "Série contenu : économie circulaire, transformation BTP, investisseurs. Format : documentaire court + posts LinkedIn. Fréquence : 2 contenus/mois."
+    },
+    {
+      "id": "moodwork-benjamin",
+      "nom": "Benjamin Brion",
+      "specialite": "Co-CEO Moodwork — Santé mentale travail",
+      "ville": "Compiègne",
+      "site": "https://moodwork.co/",
+      "priorite": 1,
+      "angle": "Bonjour Benjamin, avec la levée de 3,1 M€ et l'objectif de doubler les effectifs, Moodwork accélère fort. Il faut faire de vous LA référence d'autorité sur la santé mentale au travail.",
+      "strategie": "Série : santé mentale, bien-être au travail, leadership. Plateau groupé Roubaix (1 jour = 3-4 épisodes). Fréquence : 1 épisode/mois."
+    },
+    {
+      "id": "bioteos-romain",
+      "nom": "Romain Baheux",
+      "specialite": "Co-fondateur Bioteos/Oxylon — Purification air",
+      "ville": "Tourcoing",
+      "site": "https://bioteos.fr/",
+      "priorite": 1,
+      "angle": "Bonjour Romain, bravo pour le Trophée Pro Groupama et le déploiement d'Oxylon : votre puits de carbone à micro-algues est spectaculaire à l'écran, or c'est précisément ce qui manque à une cleantech pour convaincre le marché tertiaire.",
+      "strategie": "Contenu visuel : démonstration technologique, impact environnemental, cas clients. Format : court-métrage + Reels. Fréquence : 1 contenu/semaine."
+    },
+    {
+      "id": "beyond-green-maxime",
+      "nom": "Maxime Durand",
+      "specialite": "Co-fondateur Beyond Green — Transition agricole",
+      "ville": "Lille",
+      "site": "https://beyond-green.fr/",
+      "priorite": 2,
+      "angle": "Bonjour Maxime, votre Série A et l'objectif de rentabilité fin 2026 placent Beyond Green à un moment charnière : il faut que le marché retienne votre nom sur la transition agricole.",
+      "strategie": "Série : transformation agricole, durabilité, entrepreneuriat. Plateforme : YouTube + LinkedIn. Fréquence : 1 épisode/mois."
+    },
+    {
+      "id": "viziosense-maxime-schacht",
+      "nom": "Maxime Schacht",
+      "specialite": "CEO VizioSense — Computer vision",
+      "ville": "Lille",
+      "site": "https://viziosense.com/",
+      "priorite": 2,
+      "angle": "De Samsung à Sigfox à fondateur lillois — votre parcours est un épisode en soi. VizioSense vise la rentabilité en 2026 : la crédibilité auprès des donneurs d'ordres se construit maintenant.",
+      "strategie": "Contenu : fondateur parcours, innovation capteurs, applications industrielles. Format : one-shot plateau + 3-4 Reels extraits. Fréquence : 1 épisode initial + 5 Reels."
+    },
+    {
+      "id": "axomove-boris",
+      "nom": "Boris Lévêque",
+      "specialite": "CEO Axomove — Rééducation numérique",
+      "ville": "Loos",
+      "site": "https://axomove.com/",
+      "priorite": 1,
+      "angle": "4 M€ pour accélérer la commercialisation — et en santé, la commercialisation s'appelle pédagogie. Kinés, médecins, DRH clients : chacun doit comprendre Axomove en 60 secondes.",
+      "strategie": "Série pédagogique : santé digitale, rééducation, levée. Format : Reels explicatifs + interview podcast. Fréquence : 2 Reels/semaine + 1 podcast/mois."
+    },
+    {
+      "id": "fourgon-charles",
+      "nom": "Charles Christory",
+      "specialite": "CEO Le Fourgon — E-commerce circulaire",
+      "ville": "Lille",
+      "site": "https://lefourgon.com/",
+      "priorite": 2,
+      "angle": "Lever 8,2 M€ et recruter 100 personnes, c'est le moment où votre marque de fondateur devient un actif de recrutement autant que de vente. Le Fourgon incarne l'économie circulaire de la génération 2030.",
+      "strategie": "Contenu : fondateur parcours, CircuLar economy, recrutement. Format : long-form interview + Reels. Fréquence : 1 épisode/trimestre + 4 Reels/trimestre."
+    },
+    {
+      "id": "exotec-romain",
+      "nom": "Romain Moulin",
+      "specialite": "CEO Exotec — Robotique logistique (Licorne)",
+      "ville": "Wasquehal",
+      "site": "https://www.exotec.com/",
+      "priorite": 1,
+      "angle": "Inaugurer un siège mondial de 25 000 m² à Wasquehal quand on est la première licorne industrielle française, c'est une étape que la presse résume en trois lignes — alors qu'il y a une vraie histoire de fondateur à raconter.",
+      "strategie": "Format premium : documentaire long-form + série 3-4 épisodes courts. Audience : investisseurs mondiaux + talent acquisition. Fréquence : 1 doc/an + 4 Reels/trimestre."
+    },
+    {
+      "id": "tiamat-dirigeant",
+      "nom": "Dirigeant Tiamat (À identifier)",
+      "specialite": "Fondateur Tiamat — Batteries sodium-ion",
+      "ville": "Métropole lilloise",
+      "site": "https://www.tiamat-energy.com/",
+      "priorite": 2,
+      "angle": "Viser le leadership mondial des batteries sodium-ion depuis les Hauts-de-France, c'est une histoire qui mérite mieux qu'un communiqué de presse. Deep Tech français = contenu monde.",
+      "strategie": "Série deep tech : innovation batterie, transition énergétique, levée. Format : long-form + webinaires. Fréquence : 1 contenu/mois."
+    },
+    {
+      "id": "vipali-john",
+      "nom": "John Lecointe",
+      "specialite": "CEO Vipali Group — Santé",
+      "ville": "Lille",
+      "site": "https://www.vipali.fr/",
+      "priorite": 2,
+      "angle": "Lever 2,5 M€ dans la santé avec huit associés, c'est bâtir une crédibilité que peu de gens voient encore depuis l'extérieur. Vous incarnez le collectif entrepreneurial.",
+      "strategie": "Contenu : santé, startup collective, levée. Format : interview + cas clients. Fréquence : 1 épisode/trimestre."
+    },
+    {
+      "id": "cst-cosimo",
+      "nom": "Cosimo Prete",
+      "specialite": "CEO CST — Crime Science Technology",
+      "ville": "Lille",
+      "site": "https://www.crime-science-tech.com/",
+      "priorite": 1,
+      "angle": "Recevoir le Prix de la Scale-up de l'Année, c'est prouver que ça grossit vite — et une croissance rapide exige que votre autorité personnelle suive le rythme. Le Lumicyano utilisé par le FBI, c'est une vraie histoire.",
+      "strategie": "Format : documentaire fondateur + cas clients (police, sécurité). Audience : B2B sécurité + investisseurs. Fréquence : 1 épisode/trimestre + 2 Reels/mois."
+    }
+  ],
+  "experts": [
+    {
+      "id": "laurence-boistay",
+      "nom": "Laurence Boistay",
+      "specialite": "Coach — Résilience émotionnelle",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "Vous avez la compétence, le problème est la visibilité. Vos clients achètent la transformation émotionnelle — mais ce qui se voit, c'est vous face caméra expliquant votre méthode.",
+      "strategie": "Série court-format : cas clients transformés, méthode explicite. Format : Reels + mini-documentaires. Fréquence : 2 Reels/semaine."
+    },
+    {
+      "id": "thomas-duchateau",
+      "nom": "Thomas Duchateau",
+      "specialite": "Coach — Psychopraticien, santé mentale",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "Votre expertise en santé mentale et résilience est rare. Le moment idéal pour transformer cette compétence en autorité visible est maintenant.",
+      "strategie": "Contenu : santé mentale, développement personnel. Format : Reels explicatifs + podcasts longs. Fréquence : 2 Reels/semaine + 1 podcast/mois."
+    },
+    {
+      "id": "virginie-tesson",
+      "nom": "Virginie Tesson",
+      "specialite": "Coach de dirigeant — ICF PCC",
+      "ville": "Roubaix",
+      "site": "https://virginietesson.com/",
+      "priorite": 1,
+      "angle": "Vos 41 avis 5 étoiles prouvent que vous transformez vraiment les dirigeants — mais cette réputation s'arrête aux portes de votre cabinet. Il faut la faire sortir.",
+      "strategie": "Série : leadership, développement dirigeant, cas clients anonymisés. Format : documentaires + Reels. Fréquence : 1 long-form/mois + 4 Reels/mois."
+    },
+    {
+      "id": "caroline-lehu",
+      "nom": "Caroline Lehu",
+      "specialite": "Coach professionnelle — Bilan de compétences",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "16 avis 5 étoiles sur des reconversions réussies — vous changez concrètement des trajectoires. C'est le type d'histoire qui fait une bonne interview.",
+      "strategie": "Contenu : reconversion, transformation professionnelle. Format : cas clients (testimonials) + Reels conseils. Fréquence : 1 success story/mois + 3 Reels/semaine."
+    },
+    {
+      "id": "djemila-haouchine",
+      "nom": "Djemila Haouchine",
+      "specialite": "Psychologue — EMDR",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "221 avis à 4,9 étoiles — vous êtes probablement la psychologue la plus recommandée de Roubaix. Cette notoriété mérite mieux qu'un cabinet.",
+      "strategie": "Contenu : santé mentale, résilience, témoignages. Format : Reels éducatifs + documentaires. Fréquence : 3 Reels/semaine."
+    },
+    {
+      "id": "delphine-bethegnies",
+      "nom": "Delphine Bethegnies",
+      "specialite": "Gestalt-thérapeute",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "La Gestalt-thérapie du lien est un créneau pointu, et vos avis 5 étoiles montrent que vous l'incarnez. Ce type d'expertise gagne à être expliqué face caméra.",
+      "strategie": "Contenu : gestalt, thérapie du lien. Format : explications Reels + cas clients. Fréquence : 2 Reels/semaine."
+    },
+    {
+      "id": "suzanne-dejeante",
+      "nom": "Suzanne Dejeante",
+      "specialite": "Coach de vie certifiée",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "Une note parfaite en coaching de vie : ceux que vous accompagnez repartent transformés. Mais qui le sait, en dehors d'eux ?",
+      "strategie": "Contenu : coaching vie, transformation personnelle. Format : Reels courts + interviews. Fréquence : 2 Reels/semaine."
+    },
+    {
+      "id": "joachim-levy",
+      "nom": "Joachim Levy",
+      "specialite": "Coach développement personnel — Ose Ton Idéal",
+      "ville": "Lille",
+      "site": "https://ose-ton-ideal.fr/",
+      "priorite": 1,
+      "angle": "68 avis 5 étoiles et une méthode qui aide les gens à construire leur pitch — vous savez donc mieux que personne ce que la visibilité change. Sauf que la vôtre plafonne.",
+      "strategie": "Contenu : développement personnel, pitch personnel, transformation. Format : Reels conseils + mini-masterclass. Fréquence : 3 Reels/semaine + 1 masterclass/mois."
+    },
+    {
+      "id": "sandra-bouzekouk",
+      "nom": "Sandra Bouzekouk-Morais",
+      "specialite": "Executive coach — SEQUOIA RH",
+      "ville": "Lille",
+      "site": "https://sequoiarh-formation.fr/",
+      "priorite": 1,
+      "angle": "Un executive coach avec 53 avis 5 étoiles, ça veut dire que les dirigeants que vous accompagnez vous font confiance totale — mais votre positionnement reste confidentiel.",
+      "strategie": "Format : documentaire fondateur + cas clients dirigeants (anonymisés). Audience : C-level France. Fréquence : 1 épisode/trimestre + 4 Reels/mois."
+    },
+    {
+      "id": "lea-lambert",
+      "nom": "Léa Lambert",
+      "specialite": "Psychologue — De Pas-Sage",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "Note parfaite dès vos premiers avis — vous installez vite la confiance. C'est précisément ce qui passe bien à l'écran.",
+      "strategie": "Contenu : santé mentale, confiance, résilience. Format : Reels éducatifs. Fréquence : 3 Reels/semaine."
+    },
+    {
+      "id": "claire-bauduin",
+      "nom": "Claire Bauduin",
+      "specialite": "Psychothérapeute",
+      "ville": "Roubaix",
+      "site": "",
+      "priorite": 2,
+      "angle": "41 avis 5 étoiles pour une psychothérapeute, c'est rare — vous êtes clairement une référence à Roubaix. Le problème : cette autorité ne se voit pas au-delà de vos patients.",
+      "strategie": "Contenu : psychothérapie, bien-être mental. Format : Reels explicatifs + articles. Fréquence : 2 Reels/semaine."
+    },
+    {
+      "id": "melodie-leroy",
+      "nom": "Mélodie Leroy",
+      "specialite": "Coach professionnelle",
+      "ville": "Lille",
+      "site": "",
+      "priorite": 2,
+      "angle": "44 avis 5 étoiles ne s'obtiennent pas par hasard — vous êtes une coach que les gens recommandent vraiment. Reste que cette réputation vit dans un cercle fermé.",
+      "strategie": "Contenu : coaching professionnel, transformation. Format : Reels conseils + témoignages. Fréquence : 2 Reels/semaine."
+    }
+  ],
+  "agences": [
+    {
+      "id": "kayak-habib",
+      "nom": "Habib Oualidi",
+      "specialite": "Fondateur Kayak Communication — Agence 35 ans",
+      "ville": "Lille",
+      "site": "https://kayakcommunication.fr/",
+      "priorite": 2,
+      "angle": "35 ans d'agence à Lille, vous avez vu passer toutes les vagues — celle du contenu vidéo de dirigeant est en cours. On a construit le plateau à Roubaix pour ça.",
+      "strategie": "White-label contenu : produire pour vos clients sous votre marque. Format : studio complet, packages mensuels. Modèle : partenariat agence + studio."
+    },
+    {
+      "id": "bigbizyou-thomas",
+      "nom": "Thomas Lecointre",
+      "specialite": "Fondateur bigbizyou — Agence performance",
+      "ville": "Roubaix",
+      "site": "https://bigbizyou.com/",
+      "priorite": 1,
+      "angle": "On partage le même bâtiment ou presque — Blanchemaille. bigbizyou vend de la croissance omnicanale ; la brique vidéo premium de dirigeant, on peut la produire sous votre marque.",
+      "strategie": "Partenariat studio : co-création contenu client, white-label production. Format : production groupée, economies d'échelle. Modèle : mensuel ou trimestrel."
+    },
+    {
+      "id": "konfiture-julien",
+      "nom": "Julien Boyaval",
+      "specialite": "Co-gérant konfiture — Agence créative",
+      "ville": "Roubaix",
+      "site": "https://konfiture.com/",
+      "priorite": 1,
+      "angle": "konfiture fait des marques fortes depuis 2008 — mais quand vos clients demandent de la vidéo de dirigeant, vous sous-traitez où ? Notre plateau est à 3 rues de chez vous.",
+      "strategie": "Partenariat white-label : production vidéo premium dirigeant, signature konfiture. Format : packages de 4-6 contenus/mois. Modèle : agence + studio."
+    },
+    {
+      "id": "pumpup-paul",
+      "nom": "Paul Raimond",
+      "specialite": "Directeur agence PumpUp Lille-Roubaix",
+      "ville": "Roubaix",
+      "site": "https://pumpup.fr/",
+      "priorite": 1,
+      "angle": "Vos consultants font gagner de la visibilité à vos clients — mais le contenu vidéo d'autorité de leurs dirigeants, qui le produit ? On a un plateau premium à 5 minutes de Blanchemaille.",
+      "strategie": "Partenariat stratégique : offre clients PumpUp + production contenu dirigeant. Format : modules 4-6 contenus, turnkey. Modèle : subscription agence."
+    },
+    {
+      "id": "talentcy-julien",
+      "nom": "Julien Drisch",
+      "specialite": "Managing partner Talentcy Agency — Événementiel",
+      "ville": "Roubaix",
+      "site": "https://talentcy-agency.com/",
+      "priorite": 2,
+      "angle": "Vous produisez des événements — et chaque événement non filmé est du contenu perdu pour vos clients. Captation multicam + découpe, plateau à deux rues de chez vous.",
+      "strategie": "Service: captation & montage événements, format court pour réseaux. Format : 1-2 événements/mois, découpe 10-15 clips. Modèle : à l'événement ou forfait."
+    },
+    {
+      "id": "octave-klaba",
+      "nom": "Octave Klaba",
+      "specialite": "Président OVHcloud — Création de contenu",
+      "ville": "Roubaix",
+      "site": "https://www.ovhcloud.com/",
+      "priorite": 1,
+      "angle": "Vous êtes déjà l'un des rares dirigeants du Nord à parler directement à votre audience — et ça se voit. On construit à Roubaix un plateau média au format des plus grandes émissions de dirigeants.",
+      "strategie": "Upgrade contenu : studio premium pour long-form interviews, podcast, docs. Format : 1 épisode/mois + 8 Reels/mois. Audience : monde entier."
+    }
+  ]
+}

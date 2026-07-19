@@ -1,0 +1,71 @@
+{
+  "cadre": "« Bonjour [Prénom / Maître / Docteur]. [Votre prénom] à l'appareil, je vous appelle de la part de Loïc. Il accompagne des [persona]s à devenir les références de leur secteur grâce à des interviews premium. J'avais une question. »<br><br>",
+  "familles": [
+    {
+      "s": 5,
+      "t": "Famille 1 · L'auto-diagnostic (n°1)",
+      "q0": "« Sur l'image d'expert que vous renvoyez aujourd'hui, spontanément, vous vous mettriez combien sur 10 ? »",
+      "v": "{{CADRE}}« Sur l'image d'expert que vous renvoyez aujourd'hui, spontanément, vous vous mettriez combien sur 10 ? »",
+      "psy": "Effet d'engagement + auto-évaluation : personne ne se note 10. En donnant un chiffre, il admet lui-même l'écart, et défendra ensuite sa propre conclusion (biais de cohérence).",
+      "oui": "Le défaut universel. Décideur direct, profil actif, aucun signal particulier. Suite naturelle : « Qu'est-ce qui manque pour un 9 ? »",
+      "non": "Profils très défensifs ou pressés à l'extrême : la question introspective demande 3 secondes de disponibilité mentale.",
+      "pers": "Tous. Particulièrement fort : dirigeants PME, coachs.",
+      "err": "Combler le silence après la question. Commenter le chiffre (« ah, c'est pas mal 6 ! »). Le chiffre n'est jamais bon ni mauvais : il se creuse."
+    },
+    {
+      "s": 5,
+      "t": "Famille 2 · Le décalage (n°2)",
+      "q0": "« En préparant votre profil, le constat de Loïc a été simple : vous valez clairement plus que ce que l'on voit de vous aujourd'hui. Ma question : vous en avez conscience, ou pas du tout ? »",
+      "v": "{{CADRE}}« En préparant votre profil, son constat a été simple : vous valez clairement plus que ce que l'on voit de vous aujourd'hui. Ma question : vous en avez conscience, ou pas du tout ? »",
+      "psy": "Tension mérite/perception. Le compliment est réel (il flatte l'expertise) mais l'écart pique. Le cerveau veut résoudre la dissonance : il parle.",
+      "oui": "Vrais experts sous-exposés : bons avis, vraie compétence, image en ligne faible. Le décalage doit être crédible.",
+      "non": "Profils déjà très en vue (le décalage n'existe pas) ou activité trop jeune (rien à quoi comparer).",
+      "pers": "Experts-comptables, avocats, dirigeants installés.",
+      "err": "Le dire comme un compliment commercial (« vous méritez mieux ! ») au lieu d'un constat factuel et posé. Enchaîner sur une explication au lieu d'une question."
+    },
+    {
+      "s": 5,
+      "t": "Famille 3 · Le concurrent (n°3)",
+      "q0": "« Vous avez forcément un confrère qui est devenu LA référence de votre secteur sans être meilleur que vous. Pourquoi lui, à votre avis ? »",
+      "v": "{{CADRE}}« Vous avez forcément un confrère qui est devenu LA référence de votre secteur sans être meilleur que vous. Pourquoi lui, à votre avis ? »",
+      "psy": "Rivalité mimétique. La comparaison à un pair moins bon mais plus reconnu est l'émotion la plus mobilisatrice du B2B : l'injustice statutaire. Il répond toujours.",
+      "oui": "Secteurs concurrentiels et denses : avocats, experts-comptables, coachs sur des marchés saturés. Cabinets installés avec de l'égo.",
+      "non": "Marchés de niche sans concurrent identifiable, profils sans ambition concurrentielle affichée. Ne jamais nommer un confrère précis : c'est lui qui met un nom dessus.",
+      "pers": "Avocats, experts-comptables, dirigeants ambitieux.",
+      "err": "Nommer un concurrent réel (risque énorme). Répondre à sa place (« c'est parce qu'il publie »). C'est LUI qui doit dire « parce qu'on le voit partout »."
+    },
+    {
+      "s": 4,
+      "t": "Famille 4 · L'autorité (n°4)",
+      "q0": "« Votre profil est ressorti dans les analyses de Loïc, et il m'a demandé de vérifier une chose : sur l'image d'expert que vous renvoyez aujourd'hui, vous vous mettriez combien sur 10 ? »",
+      "v": "« Bonjour Maître [Nom]. [Votre prénom] à l'appareil, de la part de Loïc. Il analyse en ce moment quelques profils d'[persona]s de la région pour son programme d'interviews premium, et le vôtre est ressorti. Il m'a demandé de vérifier deux ou trois choses avec vous. J'avais donc une question. »",
+      "psy": "Autorité empruntée + sélection : l'appel n'est pas une sollicitation, c'est une présélection. Être « ressorti » flatte et intrigue. Le commercial n'est qu'un émissaire : impossible de lui vendre un refus, il ne vend rien.",
+      "oui": "Barrages secrétaires (un émissaire passe mieux qu'un vendeur), professions à statut (avocats, médecins), profils sensibles au prestige.",
+      "non": "Si le ton n'est pas parfaitement posé : l'émissaire d'un expert parle lentement, sinon l'artifice s'effondre. Ne jamais inventer de fausse liste précise.",
+      "pers": "Avocats, professions libérales à statut, dirigeants établis.",
+      "err": "Sur-jouer le mystère. Pitcher le programme si on demande des détails : « C'est exactement ce que Loïc explique de vive voix, moi je vérifie juste le profil. »"
+    },
+    {
+      "s": 4,
+      "t": "Famille 5 · L'opportunité manquée (n°5)",
+      "q0": "« Avant de vous appeler, j'ai fait ce que font vos futurs clients : je vous ai cherché. Question : combien de clients, à votre avis, repartent comme moi avant même de vous appeler ? »",
+      "v": "{{CADRE}}« Avant de vous appeler, j'ai fait ce que font vos futurs clients : je vous ai cherché. Question : combien de clients, à votre avis, repartent comme moi avant même de vous appeler ? »",
+      "psy": "Aversion à la perte : perdre un client existant fait plus mal que d'en gagner un nouveau. On ne parle pas de gagner en notoriété, on parle de clients qui partent DÉJÀ chez le concurrent.",
+      "oui": "Diagnostics flagrants côté parcours client : rien sur Google, aucun témoignage, aucun moyen de se faire une idée. La preuve doit être vécue (« j'ai cherché, voilà ce que j'ai vu »).",
+      "non": "Si le prospect a en réalité une bonne présence (vérifiez la fiche prep, sinon vous êtes grillé). Profils sans recherche active de clients.",
+      "pers": "Indépendants locaux, coachs, thérapeutes, PME B2C.",
+      "err": "L'énoncer comme un reproche. Le ton est celui du constat étonné, pas de la leçon. Donner le chiffre à sa place : c'est LUI qui doit estimer combien il en perd."
+    },
+    {
+      "s": 4,
+      "t": "Famille 6 · La curiosité (n°6)",
+      "q0": "« En regardant votre profil pour Loïc, j'ai remarqué quelque chose. Un truc qui m'a fait tiquer. Je peux vous le dire ? »",
+      "v": "{{CADRE}}« En regardant votre profil pour lui, j'ai remarqué quelque chose. Un truc qui m'a fait tiquer. Je peux vous le dire ? »",
+      "psy": "Boucle ouverte (curiosity gap) : le cerveau ne supporte pas une information annoncée et non révélée. « Je peux vous le dire ? » ajoute un micro-oui qui l'engage.",
+      "oui": "Fiche prep avec UNE observation précise et vraie : dernier post ancien, avis sans réponses, aucun visage, décalage entre ses avis et son image en ligne. La révélation doit être à la hauteur de l'annonce.",
+      "non": "Sans observation réelle et spécifique. Une révélation banale (« vous n'êtes pas très actif ») tue la crédibilité de tout l'appel.",
+      "pers": "Tous, dès qu'une vraie observation existe. Le meilleur choix quand le GPS a chargé des diagnostics.",
+      "err": "Révéler trop vite ou trop banal. La révélation se formule toujours en écart : « Vos avis disent que vous êtes excellent. Votre image en ligne dit le contraire. »"
+    }
+  ]
+}

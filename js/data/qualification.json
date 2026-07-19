@@ -1,0 +1,51 @@
+{
+  "pivot": "« Aujourd'hui, la majorité de vos clients viennent d'où ? »",
+  "branches": [
+    {
+      "key": "q-bao",
+      "label": "Bouche-à-oreille",
+      "titre": "Chemin « Bouche-à-oreille » (le plus fréquent)",
+      "default": true,
+      "verbatims": [
+        "« C'est la meilleure preuve que le travail est bon. Le souci, c'est que le bouche-à-oreille a un plafond : vous vendez au mérite, et le mérite, ça se négocie. Celui qu'on connaît déjà, lui, il vend au prix qu'il veut. »<em>⏸ silence</em>",
+        "Relance : « Et le jour où ça ralentit, vous avez un plan B, ou c'est la loterie ? »<em>⏸ il parle, vous écoutez. Puis direction : Conséquence du moteur, étape 5.</em>"
+      ]
+    },
+    {
+      "key": "q-google",
+      "label": "Google / site",
+      "titre": "Chemin « Google / site »",
+      "verbatims": [
+        "« Donc les gens vous comparent. Quand quelqu'un tape votre métier dans votre ville, il ouvre trois onglets : vous et deux concurrents. Qu'est-ce qui fait qu'il vous choisit VOUS, à part le prix ? »<em>⏸</em>",
+        "Relance : « C'est exactement ça, le sujet : sur Google, sans preuve de crédibilité, vous êtes un onglet parmi trois. Celui qui inspire confiance avant le premier contact gagne l'affaire sans négocier. »<em>Direction : Raison de l'appel, étape 6 du moteur.</em>"
+      ]
+    },
+    {
+      "key": "q-insta",
+      "label": "Instagram / réseaux",
+      "titre": "Chemin « Instagram / réseaux »",
+      "verbatims": [
+        "« Donc vous avez déjà compris que l'exposition amène des clients. Question : ces clients-là, ce sont vos meilleurs clients, ou plutôt les petits dossiers qui négocient ? »<em>⏸</em>",
+        "Relance : « C'est le piège classique : de l'exposition sans image d'expert, ça attire du volume, pas de la valeur. La référence, elle, est choisie à son prix. »<em>Direction : Le décalage, étape 6.</em>"
+      ]
+    },
+    {
+      "key": "q-linkedin",
+      "label": "LinkedIn",
+      "titre": "Chemin « LinkedIn »",
+      "verbatims": [
+        "« Bien. Et sur LinkedIn, aujourd'hui, vous publiez vous-même ou c'est surtout votre réseau existant qui vous fait travailler ? »<em>⏸</em>",
+        "Relance : « Le réseau, c'est le bouche-à-oreille en ligne : même plafond. Ceux qui passent devant vous, ce ne sont pas les meilleurs, ce sont ceux qu'on voit. »<em>Direction : Conséquence, étape 5.</em>"
+      ]
+    },
+    {
+      "key": "q-pub",
+      "label": "Publicité payante",
+      "titre": "Chemin « Publicité payante »",
+      "verbatims": [
+        "« Donc vous achetez de l'attention. Question franche : quand vous coupez le budget, il reste quoi ? »<em>⏸</em>",
+        "Relance : « C'est la différence entre louer et posséder. La pub loue de l'attention, l'autorité vous appartient : elle continue de vendre quand vous dormez. Les deux se combinent très bien d'ailleurs. »<em>Direction : Raison de l'appel, étape 6. Profil souvent mature : scoring élevé en Maturité.</em>"
+      ]
+    }
+  ]
+}

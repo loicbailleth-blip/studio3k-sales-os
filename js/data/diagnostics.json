@@ -1,0 +1,33 @@
+{
+  "checklist": [
+    { "key": "visibilite", "label": "Aucun contenu nulle part (site vitrine mort, pas de réseaux)" },
+    { "key": "credibilite", "label": "Du contenu, mais amateur (visuels datés, irrégulier, décalage avec son niveau réel)" },
+    { "key": "visage", "label": "Aucun visage du dirigeant nulle part" },
+    { "key": "poste6mois", "label": "Dernière publication il y a plus de 6 mois" },
+    { "key": "video", "label": "Pas une seule vidéo" },
+    { "key": "temoignage", "label": "Aucun témoignage client visible" },
+    { "key": "cta", "label": "Pas d'appel à l'action clair sur le site" },
+    { "key": "google", "label": "Fiche Google peu exploitée (photos manquantes, pas de réponses aux avis)" },
+    { "key": "preuve", "label": "Aucune preuve d'expertise (pas de cas clients, pas de chiffres, pas de presse)" },
+    { "key": "reputation", "label": "Beaucoup d'avis Google (bonne réputation dormante)" },
+    { "key": "croissance", "label": "Forte croissance ou recrutement en cours" },
+    { "key": "installe", "label": "Cabinet ou boîte installée, notoriété locale établie" },
+    { "key": "signal", "label": "Signal chaud : parution, article, post récent qui cartonne, livre" }
+  ],
+  "priorite": ["signal", "croissance", "installe", "reputation", "credibilite", "google", "poste6mois", "visage", "cta", "preuve", "visibilite", "video", "temoignage"],
+  "reco": {
+    "visibilite": { "a": "Famille 5 · L'opportunité manquée (n°5)", "angle": "« J'ai fait ce que font vos futurs clients : je vous ai cherché. Combien repartent comme moi, à votre avis ? »", "q": "« Si le bouche-à-oreille s'arrêtait pendant 3 mois, il se passerait quoi ? »", "obj": "temps", "objLabel": "« Pas le temps »", "clo": "n°8 · L'analyse offerte (« Loïc vous dit si ça vaut le coup, ou pas »)" },
+    "credibilite": { "a": "Famille 2 · Le décalage (n°2)", "angle": "« Vous valez clairement plus que ce que l'on voit de vous aujourd'hui. Vous en avez conscience ? »", "q": "« Ce que vous faites déjà, ça vous apporte combien de nouveaux clients, concrètement ? »", "obj": "concurrent", "objLabel": "« On fait déjà des vidéos / on a déjà quelqu'un »", "clo": "n°9 · La validation de potentiel" },
+    "visage": { "a": "Famille 6 · La curiosité (n°6)", "angle": "« J'ai remarqué quelque chose : on ne voit jamais votre visage. Or on choisit le dirigeant avant la boîte. »", "q": "« Pourquoi un prospect vous choisirait vous, plutôt qu'un concurrent qu'il voit tous les jours ? »", "obj": "confiance", "objLabel": "« Vous êtes qui ? »", "clo": "n°5 · La projection" },
+    "poste6mois": { "a": "Famille 6 · La curiosité (n°6)", "angle": "« J'ai remarqué quelque chose : la dernière fois qu'on vous a vu ou entendu quelque part, c'était il y a [X]. »", "q": "« Un prospect qui vérifie avant d'appeler et qui tombe là-dessus, il se dit quoi, à votre avis ? »", "obj": "temps", "objLabel": "« Pas le temps, justement »", "clo": "n°8 · L'analyse offerte" },
+    "video": { "a": "Famille 2 · Le décalage (n°2)", "angle": "« Aucun format où on vous entend penser : aucune raison de vous faire confiance avant de vous rencontrer. »", "q": "« Comment un prospect peut savoir ce que ça donne de travailler avec vous, avant de vous appeler ? »", "obj": "prix", "objLabel": "« C'est combien ? »", "clo": "n°9 · La validation de potentiel" },
+    "temoignage": { "a": "Famille 5 · L'opportunité manquée (n°5)", "angle": "« Rien ne prouve vos résultats : le prospect doit vous croire sur parole, et il ne le fait pas. »", "q": "« Vos clients contents, ils le disent où ? »", "obj": "confiance", "objLabel": "« Pas intéressé »", "clo": "n°8 · L'analyse offerte" },
+    "cta": { "a": "Famille 5 · L'opportunité manquée (n°5)", "angle": "« Un prospect convaincu par votre site ne sait même pas quoi faire ensuite. Il repart. »", "q": "« Un visiteur convaincu sur votre site, il fait quoi concrètement, ensuite ? »", "obj": "mail", "objLabel": "« Envoyez-moi un mail »", "clo": "n°1 · L'alternative simple" },
+    "google": { "a": "Famille 6 · La curiosité (n°6)", "angle": "« Vos avis disent que vous êtes excellent. Votre image en ligne dit le contraire. »", "q": "« Ces avis, ils vous ramènent combien de clients par mois, à votre avis ? »", "obj": "temps", "objLabel": "« Pas le temps »", "clo": "n°8 · L'analyse offerte" },
+    "preuve": { "a": "Famille 2 · Le décalage (n°2)", "angle": "« Vos résultats parlent pour vous... sauf que nulle part on ne les voit. »", "q": "« Vu de l'extérieur, pourquoi vous plutôt qu'un concurrent ? »", "obj": "confiance", "objLabel": "« Vous êtes qui ? »", "clo": "n°5 · La projection" },
+    "reputation": { "a": "Famille 6 · La curiosité (n°6)", "angle": "« [N] avis, note excellente, et une réputation qui dort : personne ne capitalise dessus. »", "q": "« 4,9 sur Google et ça ne travaille pour vous nulle part ailleurs : c'est un choix, ou personne ne vous l'a jamais dit ? »", "obj": "concurrent", "objLabel": "« On a déjà quelqu'un »", "clo": "n°9 · La validation de potentiel" },
+    "croissance": { "a": "Famille 2 · Le décalage (n°2)", "angle": "« Les talents choisissent le patron qu'ils connaissent, pas la meilleure boîte. »", "q": "« Les profils que vous recrutez en ce moment, ils vous connaissaient avant de postuler ? »", "obj": "temps", "objLabel": "« Pas le temps, on est en plein rush »", "clo": "n°6 · Le retrait rationnel" },
+    "installe": { "a": "Famille 3 · Le concurrent (n°3)", "angle": "« Un confrère est devenu LA référence sans être meilleur que vous. Pourquoi lui ? »", "q": "« Entre votre réputation réelle et ce qu'on voit de vous en ligne, il y a combien d'écart, honnêtement ? »", "obj": "concurrent", "objLabel": "« On a déjà quelqu'un / on gère »", "clo": "n°5 · La projection" },
+    "signal": { "a": "Famille 6 · La curiosité (n°6)", "angle": "Le signal EST l'observation : citez-le dans les 5 premières secondes, c'est lui qui a fait « ressortir le profil ».", "q": "« Qu'est-ce que ça vous a apporté concrètement, [le signal : la parution, l'article, le lancement] ? »", "obj": "mail", "objLabel": "« Envoyez-moi un mail »", "clo": "n°1 · L'alternative simple" }
+  }
+}
