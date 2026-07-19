@@ -29,6 +29,9 @@ export function initRouter(){
     b.addEventListener("click", () => showMode(b.dataset.mode));
   });
 
+  document.getElementById("libBtn")?.addEventListener("click", () => showMode("bibliotheque"));
+  document.getElementById("settingsBtn")?.addEventListener("click", () => showMode("parametres"));
+
   window.addEventListener("popstate", () => {
     const m = (location.hash || "").replace("#", "");
     if(MODES.includes(m)) showMode(m, { skipHistory: true });
