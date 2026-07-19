@@ -580,15 +580,15 @@ function updateSessionCount() {
 }
 
 function guessPersona(client) {
-  const text = ((client.entreprise || "") + " " + (client.notes || "")).toLowerCase();
+  const text = ((client.entreprise || "") + " " + (client.notes || "") + " " + (client.nom || "")).toLowerCase();
 
-  if (text.includes("expert-comptable") || text.includes("comptable") || text.includes("expert comptable") || text.includes("cabinet comptable")) return "Expert-comptable";
-  if (text.includes("avocat") || text.includes("cabinet") || text.includes("droit") || text.includes("juridique")) return "Avocat";
-  if (text.includes("coach") || text.includes("thérapeute") || text.includes("therapie") || text.includes("psychologue") || text.includes("psychothérapeute")) return "Coach / Thérapeute";
-  if (text.includes("indépendant") || text.includes("artisan") || text.includes("freelance") || text.includes("micro-entrepreneur")) return "Indépendant local";
-  if (text.includes("sarl") || text.includes("eurl") || text.includes("sas") || text.includes("pme") || text.includes("petite entreprise") || text.includes("dirigeant")) return "Dirigeant PME";
+  if (text.includes("expert-comptable") || text.includes("expertise comptable") || text.includes("comptable") || text.includes("cabinet comptable") || text.includes("expert comptable")) return "Expert-comptable";
+  if (text.includes("avocat") || text.includes("cabinet juridique") || text.includes("droit") || text.includes("juridique") || text.includes("barreau")) return "Avocat";
+  if (text.includes("coach") || text.includes("thérapeute") || text.includes("therapie") || text.includes("psychologue") || text.includes("psychothérapeute") || text.includes("therapeute") || text.includes("wellness") || text.includes("bien-être")) return "Coach / Thérapeute";
+  if (text.includes("indépendant") || text.includes("artisan") || text.includes("freelance") || text.includes("micro-entrepreneur") || text.includes("auto-entrepreneur")) return "Indépendant local";
 
-  return null;
+  // Par défaut: Dirigeant PME pour tout le reste (c'est le plus courant)
+  return "Dirigeant PME";
 }
 
 function assignMissingPersonas() {
