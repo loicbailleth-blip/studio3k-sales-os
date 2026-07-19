@@ -3,11 +3,15 @@
 const AUTH_CODE = "OPUS2024";
 
 export function checkAuth() {
+  // Auth disabled for testing
+  return true;
+  /*
   const stored = localStorage.getItem("3kos_auth");
   if (stored === AUTH_CODE) return true;
 
   showLoginPage();
   return false;
+  */
 }
 
 function showLoginPage() {
