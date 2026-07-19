@@ -496,6 +496,10 @@
     </header>
 
     <div class="ws-search-box">
+      <div style="display:flex; gap:4px; margin-bottom:8px;">
+        <button class="filter-btn" id="viewAllBtn" data-filter="view" data-value="all" style="flex:1;">Tous</button>
+        <button class="filter-btn" id="viewEnrichBtn" data-filter="view" data-value="enrich" style="flex:1;">À enrichir</button>
+      </div>
       <input id="wsSearch" type="search" placeholder="Rechercher..." autocomplete="off">
     </div>
 
@@ -519,8 +523,9 @@
     </div>
 
     <div style="padding:16px 12px; gap:8px; display:flex; flex-direction:column;">
-      <button class="btn btn-primary" onclick="openNextProspect()">▶ Prospect suivant</button>
+      <button class="btn btn-primary" onclick="showSessionSelector()">▶ Prospect suivant</button>
       <button class="btn" onclick="showClientForm()">+ Ajouter client</button>
+      <button class="btn ghost" onclick="showImportModal()">⬆ Import JSON</button>
       <button class="btn ghost" onclick="exportClients()">↓ Export CSV</button>
     </div>
 
@@ -528,6 +533,57 @@
   </div>
 
   <div class="ws-panel" id="workstationPanel"></div>
+
+  <!-- Import JSON Modal -->
+  <div id="importModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h2 style="margin:0;">Importer des prospects (JSON)</h2>
+        <button class="btn ghost" onclick="closeImportModal()" style="width:32px; height:32px; padding:0; font-size:20px;">✕</button>
+      </div>
+      <textarea id="importJsonInput" placeholder="Colle le JSON ici..." style="width:100%; min-height:200px; padding:12px; border:1px solid var(--border); border-radius:4px; background:var(--bg); color:var(--text); font-family:monospace; font-size:12px; box-sizing:border-box;"></textarea>
+      <div id="importStatus" class="note" style="margin-top:8px;"></div>
+      <div style="display:flex; gap:8px; margin-top:16px;">
+        <button class="btn btn-primary" onclick="executeImport()" style="flex:1;">Importer</button>
+        <button class="btn ghost" onclick="closeImportModal()">Annuler</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Session Selector Modal -->
+  <div id="sessionSelectorModal" class="modal-overlay" style="display:none;">
+    <div class="modal-box" style="max-width:500px;">
+      <h2 style="margin:0 0 16px 0;">Choisir une session de prospection</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px;">
+        <div>
+          <label style="font-size:12px; text-transform:uppercase; color:var(--gris); display:block; margin-bottom:8px;">Persona</label>
+          <select id="sessionPersona" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:4px; background:var(--bg); color:var(--text);">
+            <option value="">Tous les personas</option>
+            <option value="Dirigeant PME">Dirigeant PME</option>
+            <option value="Expert-comptable">Expert-comptable</option>
+            <option value="Coach / Thérapeute">Coach / Thérapeute</option>
+            <option value="Avocat">Avocat</option>
+            <option value="Indépendant local">Indépendant local</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:12px; text-transform:uppercase; color:var(--gris); display:block; margin-bottom:8px;">Type téléphone</label>
+          <select id="sessionPhoneType" style="width:100%; padding:8px; border:1px solid var(--border); border-radius:4px; background:var(--bg); color:var(--text);">
+            <option value="">Tous les types</option>
+            <option value="mobile">📱 Mobile</option>
+            <option value="fixe">☎ Fixe</option>
+          </select>
+        </div>
+      </div>
+      <div style="padding:12px; background:var(--bg2); border-radius:4px; margin-bottom:20px;">
+        <span style="color:var(--gris); font-size:14px;" id="sessionRemainingCount">— prospects</span>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn btn-primary" onclick="startProspectSession()" style="flex:1;">Commencer</button>
+        <button class="btn ghost" onclick="closeSessionSelector()">Annuler</button>
+      </div>
+    </div>
+  </div>
 
   <!-- Formulaire d'ajout/modification -->
   <div id="clientFormPanel" class="modal-overlay">

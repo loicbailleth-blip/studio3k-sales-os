@@ -483,6 +483,110 @@ export function initCallFinishedListener() {
   });
 }
 
+/* Import modal */
+function showImportModal() {
+  const modal = document.getElementById("importModal");
+  if (modal) modal.style.display = "flex";
+  document.getElementById("importJsonInput").value = "";
+  document.getElementById("importStatus").textContent = "";
+}
+
+function closeImportModal() {
+  const modal = document.getElementById("importModal");
+  if (modal) modal.style.display = "none";
+}
+
+function executeImport() {
+  const json = document.getElementById("importJsonInput").value.trim();
+  const status = document.getElementById("importStatus");
+
+  if (!json) {
+    status.textContent = "⚠ Colle du JSON valide";
+    return;
+  }
+
+  try {
+    const data = JSON.parse(json);
+    const contacts = Array.isArray(data) ? data : (data.contacts || []);
+
+    if (contacts.length === 0) {
+      status.textContent = "⚠ Aucun contact dans le JSON";
+      return;
+    }
+
+    // Dédoublonnage par nom
+    const existingNames = new Set(CLIENTS.map(c => c.nom?.toLowerCase()));
+    let imported = 0;
+
+    contacts.forEach((c, idx) => {
+      if (existingNames.has(c.nom?.toLowerCase())) return;
+
+      const newClient = {
+        id: c.email || c.telephone?.replace(/\s/g, "") || ("import_" + Date.now() + "_" + idx),
+        nom: c.nom || "",
+        entreprise: c.fonction || "",
+        email: c.email || "",
+        telephone: c.telephone || "",
+        site: c.linkedin || "",
+        ville: c.localisation || "",
+        persona: (c.persona_app && c.persona_app !== "Non défini") ? c.persona_app : "Professionnel",
+        score: 80,
+        notes: (c.hook ? "HOOK: " + c.hook + "\n" : "") + (c.priorite ? "Priorité: " + c.priorite : ""),
+        status: c.telephone ? "a_appeler" : "nouveau",
+        phone_type: detectPhoneType(c.telephone),
+        tentatives: 0,
+        date_relance: null,
+        lead_entrant_date: c.telephone ? new Date().toISOString() : null,
+        created_at: new Date().toISOString()
+      };
+
+      CLIENTS.push(newClient);
+      existingNames.add(c.nom?.toLowerCase());
+      imported++;
+    });
+
+    setJSON("s3k_clients", CLIENTS);
+    applyFilters();
+    renderClientsList();
+    status.textContent = "✓ " + imported + " prospect" + (imported > 1 ? "s" : "") + " importé" + (imported > 1 ? "s" : "");
+    setTimeout(() => closeImportModal(), 1500);
+  } catch (err) {
+    status.textContent = "✗ Erreur JSON: " + err.message;
+  }
+}
+
+/* Session management UI */
+function showSessionSelector() {
+  const modal = document.getElementById("sessionSelectorModal");
+  if (modal) modal.style.display = "flex";
+  updateSessionCount();
+}
+
+function closeSessionSelector() {
+  const modal = document.getElementById("sessionSelectorModal");
+  if (modal) modal.style.display = "none";
+}
+
+function updateSessionCount() {
+  const persona = document.getElementById("sessionPersona")?.value || "";
+  const phoneType = document.getElementById("sessionPhoneType")?.value || "";
+  let count = FILTERED.length;
+  if (persona) count = FILTERED.filter(c => !c.persona || c.persona === persona).length;
+  if (phoneType) count = FILTERED.filter(c => c.phone_type === phoneType).length;
+  if (persona && phoneType) count = FILTERED.filter(c => (!c.persona || c.persona === persona) && c.phone_type === phoneType).length;
+
+  const el = document.getElementById("sessionRemainingCount");
+  if (el) el.textContent = count + " prospect" + (count > 1 ? "s" : "");
+}
+
+function startProspectSession() {
+  const persona = document.getElementById("sessionPersona")?.value || "";
+  const phoneType = document.getElementById("sessionPhoneType")?.value || "";
+  startSession(persona, phoneType);
+  closeSessionSelector();
+  openNextProspect();
+}
+
 export function initWorkstation() {
   window.openProspect = openProspect;
   window.openNextProspect = openNextProspect;
@@ -492,6 +596,12 @@ export function initWorkstation() {
   window.scheduleFollowUp = scheduleFollowUp;
   window.exportClients = exportClients;
   window.exportEnrichedNeeded = exportEnrichedNeeded;
+  window.showSessionSelector = showSessionSelector;
+  window.closeSessionSelector = closeSessionSelector;
+  window.startProspectSession = startProspectSession;
+  window.showImportModal = showImportModal;
+  window.closeImportModal = closeImportModal;
+  window.executeImport = executeImport;
   window.CURRENT_PROSPECT_OBJ = null;
   window.addProspectNote = (id) => {
     const note = document.getElementById("wsNoteInput").value.trim();
@@ -536,6 +646,34 @@ export function initWorkstation() {
           setFilters({ status: [value] });
         }
       });
+    });
+
+    // View filters (Tous / À enrichir)
+    const viewAllBtn = document.getElementById("viewAllBtn");
+    const viewEnrichBtn = document.getElementById("viewEnrichBtn");
+    if (viewAllBtn) {
+      viewAllBtn.addEventListener("click", () => {
+        viewAllBtn.classList.add("active");
+        viewEnrichBtn?.classList.remove("active");
+        setFilters({ search: "" });
+        document.getElementById("wsSearch").value = "";
+      });
+      viewAllBtn.classList.add("active");
+    }
+    if (viewEnrichBtn) {
+      viewEnrichBtn.addEventListener("click", () => {
+        viewEnrichBtn.classList.add("active");
+        viewAllBtn?.classList.remove("active");
+        FILTERED = getEnrichedNeeded();
+        renderClientsList();
+      });
+    }
+
+    // Session selector updates
+    const sessionPersona = document.getElementById("sessionPersona");
+    const sessionPhoneType = document.getElementById("sessionPhoneType");
+    [sessionPersona, sessionPhoneType].forEach(el => {
+      if (el) el.addEventListener("change", updateSessionCount);
     });
   }, 0);
 

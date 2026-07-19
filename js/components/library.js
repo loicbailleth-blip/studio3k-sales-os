@@ -31,6 +31,14 @@ function renderProspects(segment){
   const el = document.getElementById("prospectsContent");
   if(!el) return;
 
+  if(prospects.length === 0){
+    el.innerHTML = `<div class="card" style="padding:32px;text-align:center;">
+      <p style="color:var(--gris);margin:0 0 16px 0;">Aucun prospect embarqué. Importe ta liste depuis le Fichier Clients.</p>
+      <button class="btn btn-sm" onclick="window.showMode('clients')">Aller à l'import</button>
+    </div>`;
+    return;
+  }
+
   el.innerHTML = prospects.map(p => `
     <div class="card prospect-card" data-segment="${segment}" data-prospect-id="${p.id}" onclick="window.loadProspectCardClick('${segment}', '${p.id}')">
       <div class="prospect-header">
