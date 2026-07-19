@@ -579,6 +579,25 @@ function updateSessionCount() {
   if (el) el.textContent = count + " prospect" + (count > 1 ? "s" : "");
 }
 
+function exportEnrichedNeeded() {
+  const enrichNeeded = FILTERED.filter(c => c.status === "a_enrichir" || !c.telephone);
+  const csv = [
+    ["Nom", "Entreprise", "Email", "Téléphone", "Ville", "Persona", "Score", "Notes"].join(","),
+    ...enrichNeeded.map(c => [
+      c.nom || "", c.entreprise || "", c.email || "", c.telephone || "",
+      c.ville || "", c.persona || "", c.score || 0, (c.notes || "").replace(/"/g, '""')
+    ].map(v => typeof v === "string" ? `"${v}"` : v).join(","))
+  ].join("\n");
+
+  const blob = new Blob([csv], { type: "text/csv" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "prospects_a_enrichir.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function startProspectSession() {
   const persona = document.getElementById("sessionPersona")?.value || "";
   const phoneType = document.getElementById("sessionPhoneType")?.value || "";
