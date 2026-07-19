@@ -579,6 +579,44 @@ function updateSessionCount() {
   if (el) el.textContent = count + " prospect" + (count > 1 ? "s" : "");
 }
 
+function guessPersona(client) {
+  const text = ((client.entreprise || "") + " " + (client.notes || "")).toLowerCase();
+
+  if (text.includes("expert-comptable") || text.includes("comptable") || text.includes("expert comptable") || text.includes("cabinet comptable")) return "Expert-comptable";
+  if (text.includes("avocat") || text.includes("cabinet") || text.includes("droit") || text.includes("juridique")) return "Avocat";
+  if (text.includes("coach") || text.includes("thérapeute") || text.includes("therapie") || text.includes("psychologue") || text.includes("psychothérapeute")) return "Coach / Thérapeute";
+  if (text.includes("indépendant") || text.includes("artisan") || text.includes("freelance") || text.includes("micro-entrepreneur")) return "Indépendant local";
+  if (text.includes("sarl") || text.includes("eurl") || text.includes("sas") || text.includes("pme") || text.includes("petite entreprise") || text.includes("dirigeant")) return "Dirigeant PME";
+
+  return null;
+}
+
+function assignMissingPersonas() {
+  let assigned = 0;
+  CLIENTS.forEach(c => {
+    if (!c.persona || c.persona === "") {
+      const guessed = guessPersona(c);
+      if (guessed) {
+        c.persona = guessed;
+        assigned++;
+      }
+    }
+  });
+
+  saveClientsToStorage();
+  renderClientsList();
+
+  const msg = assigned + " prospect" + (assigned > 1 ? "s" : "") + " assigné" + (assigned > 1 ? "s" : "");
+  const flash = document.getElementById("clientsFlash");
+  if (flash) {
+    flash.textContent = "✓ " + msg;
+    flash.style.color = "var(--laiton)";
+    setTimeout(() => flash.textContent = "", 3000);
+  }
+
+  console.log("Assigned personas:", assigned);
+}
+
 function exportEnrichedNeeded() {
   const enrichNeeded = FILTERED.filter(c => c.status === "a_enrichir" || !c.telephone);
   const csv = [
@@ -615,6 +653,7 @@ export function initWorkstation() {
   window.scheduleFollowUp = scheduleFollowUp;
   window.exportClients = exportClients;
   window.exportEnrichedNeeded = exportEnrichedNeeded;
+  window.assignMissingPersonas = assignMissingPersonas;
   window.showSessionSelector = showSessionSelector;
   window.closeSessionSelector = closeSessionSelector;
   window.startProspectSession = startProspectSession;
