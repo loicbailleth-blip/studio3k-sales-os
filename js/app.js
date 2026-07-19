@@ -126,8 +126,9 @@ window.addEventListener("offline", updateOnlinePill);
 updateOnlinePill();
 
 /* Service worker : fonctionnement hors ligne */
-if("serviceWorker" in navigator){
-  window.addEventListener("load", () => {
-    navigator.serviceWorker.register("service-worker.js").catch(err => console.warn("SW non enregistré :", err));
-  });
-}
+// DISABLED: SW causes aggressive caching of JS modules
+// if("serviceWorker" in navigator){
+//   window.addEventListener("load", () => {
+//     navigator.serviceWorker.register("service-worker.js").catch(err => console.warn("SW non enregistré :", err));
+//   });
+// }
